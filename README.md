@@ -1,3 +1,5 @@
+# Don't use this yet. It is not completed in any way!
+
 # LogglyLogger-CocoaLumberjack
 
 LogglyLogger-CocoaLumberjack is a custom logger for [CocoaLumberjack](https://github.com/CocoaLumberjack/CocoaLumberjack) that logs to [Loggly](https://www.loggly.com/).
