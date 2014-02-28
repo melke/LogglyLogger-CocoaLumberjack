@@ -1,2 +1,2 @@
-platform: ios
+platform :ios, '6.0'
 podspec :path => "../../LogglyLogger-CocoaLumberjack.podspec"
