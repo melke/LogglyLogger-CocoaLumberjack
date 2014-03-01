@@ -1,1 +1,21 @@
+PODS:
+  - CocoaLumberjack (1.8.1):
+    - CocoaLumberjack/Extensions
+  - CocoaLumberjack/Core (1.8.1)
+  - CocoaLumberjack/Extensions (1.8.1):
+    - CocoaLumberjack/Core
+  - LogglyLogger-CocoaLumberjack (0.0.5):
+    - CocoaLumberjack
+
+DEPENDENCIES:
+  - LogglyLogger-CocoaLumberjack (from `../../LogglyLogger-CocoaLumberjack.podspec`)
+
+EXTERNAL SOURCES:
+  LogglyLogger-CocoaLumberjack:
+    :path: ../../LogglyLogger-CocoaLumberjack.podspec
+
+SPEC CHECKSUMS:
+  CocoaLumberjack: 020378ec400d658923bf5887178394f65f052c90
+  LogglyLogger-CocoaLumberjack: 414faa434d26a10adc574f15d80fc06dbee95904
+
 COCOAPODS: 0.29.0

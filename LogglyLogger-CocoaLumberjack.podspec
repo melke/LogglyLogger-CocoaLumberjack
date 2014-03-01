@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
 
   s.author       = { "Mats Melke" => "mats@melke.nu" }
 
-  s.source       = { :git => "https://github.com/melke/LogglyLogger-CocoaLumberjack.git", :tag => s.version.to_s }
+  s.source       = { :git => "https://github.com/melke/LogglyLogger-CocoaLumberjack.git", :tag => s.version }
 
   s.source_files  = 'LogglyLogger-CocoaLumberjack', 'LogglyLogger-CocoaLumberjack/**/*.{h,m}'
   s.requires_arc = true
