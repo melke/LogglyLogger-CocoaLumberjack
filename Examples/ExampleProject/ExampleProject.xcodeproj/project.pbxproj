@@ -34,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		62F8E15868BDAE2ADD4C33F5 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		E5D5794A18C0C5BF00CB26C6 /* ExampleProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5D5794D18C0C5BF00CB26C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E5D5794F18C0C5BF00CB26C6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -86,6 +87,7 @@
 				E5D5797218C0C5BF00CB26C6 /* ExampleProjectTests */,
 				E5D5794C18C0C5BF00CB26C6 /* Frameworks */,
 				E5D5794B18C0C5BF00CB26C6 /* Products */,
+				62F8E15868BDAE2ADD4C33F5 /* Podfile */,
 			);
 			sourceTree = "<group>";
 		};

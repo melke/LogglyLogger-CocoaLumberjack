@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:LICENSE.TXT">
+   </FileRef>
+   <FileRef
+      location = "group:LogglyLogger-CocoaLumberjack.podspec">
+   </FileRef>
+   <FileRef
+      location = "group:README.md">
+   </FileRef>
+   <Group
+      location = "group:LogglyLogger-CocoaLumberjack"
+      name = "LogglyLogger-CocoaLumberjack">
+      <FileRef
+         location = "group:LogglyAlertViewHandler.h">
+      </FileRef>
+      <FileRef
+         location = "group:LogglyAlertViewHandler.m">
+      </FileRef>
+      <FileRef
+         location = "group:LogglyFields.h">
+      </FileRef>
+      <FileRef
+         location = "group:LogglyFields.m">
+      </FileRef>
+      <FileRef
+         location = "group:LogglyFormatter.h">
+      </FileRef>
+      <FileRef
+         location = "group:LogglyFormatter.m">
+      </FileRef>
+      <FileRef
+         location = "group:LogglyLogger.h">
+      </FileRef>
+      <FileRef
+         location = "group:LogglyLogger.m">
+      </FileRef>
+   </Group>
+</Workspace>
