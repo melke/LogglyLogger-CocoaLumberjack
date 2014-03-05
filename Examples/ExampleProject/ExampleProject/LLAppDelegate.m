@@ -7,11 +7,34 @@
 //
 
 #import "LLAppDelegate.h"
+#import "LogglyLogger.h"
+#import "LogglyFormatter.h"
+
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 @implementation LLAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+
+    LogglyLogger *logglyLogger = [[LogglyLogger alloc] init];
+    logglyLogger.deleteInterval = 0;
+    logglyLogger.maxAge = 0;
+    logglyLogger.deleteOnEverySave = NO;
+    // todo Set logglyLogger.saveInterval to a higher value
+    logglyLogger.saveInterval = 15;
+    logglyLogger.saveThreshold = 200;
+    logglyLogger.maxLogMessagesInBuffer = 1000;
+    [logglyLogger setLogFormatter:[[LogglyFormatter alloc] init]];
+
+    [DDLog addLogger:logglyLogger];
+
+    DDLogVerbose(@"Verbose no JSON in log message");
+    DDLogVerbose(@"{\"a_json_key\":\"some verbose json value\"}");
+    DDLogInfo(@"Info no JSON in log message");
+    DDLogInfo(@"{\"another_json_key\":\"some info json value\"}");
+
+
     return YES;
 }
 							

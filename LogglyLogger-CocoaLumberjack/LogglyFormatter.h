@@ -4,6 +4,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DDLog.h"
 
 @interface LogglyFormatter : NSObject <DDLogFormatter>
 @property (strong, nonatomic) NSString *userid;
