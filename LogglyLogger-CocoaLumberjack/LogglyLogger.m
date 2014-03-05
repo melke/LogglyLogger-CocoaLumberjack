@@ -6,12 +6,12 @@
 #import "LogglyLogger.h"
 #import "AFHTTPRequestOperation.h"
 
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 @implementation LogglyLogger {
     // Some private iVars
     NSMutableArray *_logMessagesArray;
     NSURL *_logglyURL;
+    BOOL _hasLoggedFirstLogglyPost;
 }
 
 - (id)init {
@@ -19,6 +19,11 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     if (self) {
         _logMessagesArray = [NSMutableArray arrayWithCapacity:0];
         _maxLogMessagesInBuffer = 1000;
+        // No NSLOG of first Loggly request at all if not DEBUG
+        _hasLoggedFirstLogglyPost = YES;
+#ifdef DEBUG
+        _hasLoggedFirstLogglyPost = NO;
+#endif
     }
 
     return self;
@@ -94,14 +99,22 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[messagesString dataUsingEncoding:NSUTF8StringEncoding]];
 
-    DDLogVerbose(@"Posting to Loggly: %@", messagesString);
+    if (!_hasLoggedFirstLogglyPost) {
+        NSLog(@"Posting to Loggly: %@", messagesString);
+    }
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
 
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *response = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
-        DDLogVerbose(@"Loggly post response = %@",response);
+        if (!_hasLoggedFirstLogglyPost) {
+            NSLog(@"Loggly post response = %@",response);
+            _hasLoggedFirstLogglyPost = YES;
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        DDLogVerbose(@"Loggly post Error: %@", error);
+        if (!_hasLoggedFirstLogglyPost) {
+            NSLog(@"Loggly post Error: %@", error);
+            _hasLoggedFirstLogglyPost = YES;
+        }
     }];
 
     [operation start];

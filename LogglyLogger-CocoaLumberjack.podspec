@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "LogglyLogger-CocoaLumberjack"
-  s.version      = "0.1.2"
+  s.version      = "0.1.3"
   s.summary      = "LogglyLogger-CocoaLumberjack is a custom logger for CocoaLumberjack that logs to Loggly"
 
   s.description  = <<-DESC
