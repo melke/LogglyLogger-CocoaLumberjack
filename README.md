@@ -1,4 +1,4 @@
-# Don't use this yet. It is not completed in any way!
+# Don't use this yet. It is not completed yet!
 
 # LogglyLogger-CocoaLumberjack
 
@@ -8,7 +8,7 @@ LogglyLogger-CocoaLumberjack is a custom logger for [CocoaLumberjack](https://gi
 
 A Loggly account. (Note, that they charge for higher volumes of logging)
 
-LogglyLogger-CocoaLumberjack includes uses ARC. If your project doesn't use ARC, you can enable it per file using the `-fobjc-arc` compiler flag under "Build Phases" and "Compile Sources" on your project's target in Xcode.
+LogglyLogger-CocoaLumberjack uses ARC. If your project doesn't use ARC, you can enable it per file using the `-fobjc-arc` compiler flag under "Build Phases" and "Compile Sources" on your project's target in Xcode.
 
 ##Installation
 
@@ -16,14 +16,14 @@ There are two ways to add LogglyLogger-CocoaLumberjack to your project:
 
 Using [Cocoapods](cocoapods.org):
 
-    pod "LogglyLogger-CocoaLumberjack"
+    pod "LogglyLogger-CocoaLumberjack", "~> 1.0"
 
 Or manually:
 
     git clone https://github.com/melke/LogglyLogger-CocoaLumberjack.git
     cd LogglyLogger-CocoaLumberjack
 
-Now add LogglyLogger-CocoaLumberjack to your project by dragging the everything in the sub folder `LogglyLogger-CocoaLumberjack` directory into your project.
+Now add LogglyLogger-CocoaLumberjack to your project by dragging everything in the sub folder `LogglyLogger-CocoaLumberjack` directory into your project.
 
 ##Usage
 
@@ -83,8 +83,20 @@ they all have reasonable default values.
   - saveInterval - Number of seconds between posting log statements to Loggly. Default = 600. Note that the logs are always posted when the app is suspended. Setting this to a low value may turn your app into a battery hog.
   - saveThreshold - Number of log messages before forcing a post, regardless of how long time it has been since the last post. Default 1000.
 
+To track a specific user you can set the userid property on the LogglyFormatter. The username
+will then be included in every log statement until the app is terminated by iOS.
 
-Filter by
+Similarily you can set a custom session id. If you don't, the session id will be a random string.
+Let's say that a user complains about having problems in your app. You can then have some input view
+in your app where the user can enter a string, which you set as the sessionid. At the same time
+you can set the CocoaLumberjack log level to a finer level for this user. Now you can follow
+the detailed logs in Loggly for this particular user, by filtering out all but this particular session.
+Pretty nice, huh?
+
+##Feedback and Contribution
+
+All feedback and contribution is very appreciated. Please send pull requests
+or just send an email to [mats.melke@gmail.com](mailto:mats.melke@gmail.com).
 
 ##Copyrights
 
