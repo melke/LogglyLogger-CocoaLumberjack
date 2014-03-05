@@ -67,12 +67,12 @@
     [logfields setObjectNilSafe:[NSString stringWithFormat:@"%@:%d", filestring, logMessage->lineNumber] forKey:@"fileandlinenumber"];
     [logfields setObjectNilSafe:_logglyFields.appname forKey:@"appname"];
     [logfields setObjectNilSafe:_logglyFields.appversion forKey:@"appversion"];
-    [logfields setObjectNilSafe:_logglyFields.debugidentifier forKey:@"debugidentifier"];
     [logfields setObjectNilSafe:_logglyFields.devicemodel forKey:@"devicemodel"];
     [logfields setObjectNilSafe:_logglyFields.devicename forKey:@"devicename"];
     [logfields setObjectNilSafe:_logglyFields.lang forKey:@"lang"];
     [logfields setObjectNilSafe:_logglyFields.osversion forKey:@"osversion"];
     [logfields setObjectNilSafe:self.sessionid forKey:@"sessionid"];
+    [logfields setObjectNilSafe:self.userid forKey:@"userid"];
     [logfields setObjectNilSafe:logMessage->logMsg forKey:@"rawlogmessage"];
     NSData *jsondata = [logMessage->logMsg dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *jsondictForLogMsg = [NSJSONSerialization JSONObjectWithData:jsondata options:NSJSONReadingAllowFragments error:nil];

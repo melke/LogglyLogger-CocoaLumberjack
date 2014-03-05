@@ -25,6 +25,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     logglyLogger.saveInterval = 15;
     logglyLogger.saveThreshold = 200;
     logglyLogger.maxLogMessagesInBuffer = 1000;
+    logglyLogger.logglyKey = @"c5e3fb00-c446-4039-a498-4881dab69d38";
     [logglyLogger setLogFormatter:[[LogglyFormatter alloc] init]];
 
     [DDLog addLogger:logglyLogger];
