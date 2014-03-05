@@ -7,6 +7,9 @@
 //
 
 #import "LLViewController.h"
+#import "DDLog.h"
+
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 @interface LLViewController ()
 
@@ -24,6 +27,9 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)logButtonTapped:(id)sender {
+    DDLogVerbose(@"{\"log_button_tapped\":\"The log button was tapped at %@\"}", [[[NSDate alloc] init] description]);
 }
 
 @end

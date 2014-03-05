@@ -121,7 +121,7 @@
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *response = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
         if (!_hasLoggedFirstLogglyPost) {
-            NSLog(@"Loggly post response = %@",response);
+            NSLog(@"Loggly post response = %@. This was the last NSLog statement you will see from LogglyLogger. The rest of the posts to Loggly will be done silently",response);
             _hasLoggedFirstLogglyPost = YES;
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -155,8 +155,9 @@
 }
 
 - (void) saveOnSuspend {
-    // todo remove
-    NSLog(@"saving on suspend");
+#ifdef DEBUG
+    NSLog(@"Suspending, posting logs to Loggly");
+#endif
     [self db_save];
 }
 
