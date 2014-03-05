@@ -75,7 +75,9 @@ in many of your log statements.
 
 LogglyLogger will use the bundle id of your app as a Loggly tag. You can create a "source group" in Loggly
 that contains all log statements that has a specific tag. This way, you can easily use the same Loggly
-account for many apps.
+account for many apps. If you don't want to use bundle id as the tag or if you want to
+use multiple tags, you can set the property logglyTags in the LogglyFormatter.
+(comma-separated list of tags, no whitespace in or between tags)
 
 There are some settings you can set on the LogglyLogger. Most of them are inherited from the abstract class and
 they all have reasonable default values.
