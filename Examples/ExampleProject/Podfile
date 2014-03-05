@@ -1,2 +1,2 @@
 platform :ios, '6.0'
-pod 'LogglyLogger-CocoaLumberjack', :path => '../../LogglyLogger-CocoaLumberjack.podspec'
+pod 'LogglyLogger-CocoaLumberjack', :git => 'https://github.com/melke/LogglyLogger-CocoaLumberjack.git'
