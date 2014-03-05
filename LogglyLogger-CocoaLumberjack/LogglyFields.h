@@ -13,7 +13,5 @@
 @property (strong, nonatomic) NSString *devicename;
 @property (strong, nonatomic) NSString *devicemodel;
 @property (strong, nonatomic) NSString *osversion;
-@property (strong, nonatomic) NSString *platform;
-@property (strong, nonatomic) NSString *debugidentifier;
 
 @end

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "LogglyLogger-CocoaLumberjack"
-  s.version      = "0.0.5"
+  s.version      = "0.0.6"
   s.summary      = "LogglyLogger-CocoaLumberjack is a custom logger for CocoaLumberjack that logs to Loggly"
 
   s.description  = <<-DESC
@@ -25,5 +25,6 @@ Pod::Spec.new do |s|
 
   s.source_files  = 'LogglyLogger-CocoaLumberjack', 'LogglyLogger-CocoaLumberjack/**/*.{h,m}'
   s.requires_arc = true
-  s.dependency     'CocoaLumberjack'
+  s.dependency     'CocoaLumberjack', '~> 1.6'
+  s.dependency     'AFNetworking', '~> 2.0'
 end

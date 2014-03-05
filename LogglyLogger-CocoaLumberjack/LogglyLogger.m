@@ -8,6 +8,7 @@
 
 
 @implementation LogglyLogger {
+    // Some private iVars
     NSMutableArray *_logMessagesArray;
     NSURL *_logglyURL;
 }
@@ -22,6 +23,8 @@
     return self;
 }
 
+
+#pragma mark Overridden methods from DDAbstractDatabaseLogger
 
 - (BOOL)db_log:(DDLogMessage *)logMessage
 {
@@ -78,6 +81,10 @@
         return;
     }
 
+    if (!self.logglyKey) {
+        NSAssert(false, @"You MUST set a loggly api key in the logglyKey property of this logger");
+    }
+
     if (!_logglyURL) {
         _logglyURL = [NSURL URLWithString:[NSString stringWithFormat:self.logglyUrlTemplate, self.logglyKey, self.logglyTags]];
     }
@@ -86,19 +93,37 @@
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[messagesString dataUsingEncoding:NSUTF8StringEncoding]];
 
-    DDLogMelke(@"Posting %@", messagesString);
+    DDLogVerbose(@"Posting to Loggly: %@", messagesString);
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
 
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *response = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
-        DDLogMelke(@"response = %@",response);
+        DDLogVerbose(@"Loggly post response = %@",response);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        DLog(@"Loggly post Error: %@", error);
+        DDLogVerbose(@"Loggly post Error: %@", error);
     }];
 
     [operation start];
 
 
+}
+
+#pragma mark Property getters
+
+- (NSString *)logglyUrlTemplate {
+    if (!_logglyUrlTemplate) {
+        // As of writing this code, this is the correct url for bulk posting log entries in Loggly
+        _logglyUrlTemplate = @"https://logs-01.loggly.com/bulk/%@/tag/%@/";
+    }
+    return _logglyUrlTemplate;
+}
+
+- (NSString *)logglyTags {
+    if (!_logglyTags) {
+        // Default to bundle id
+        _logglyTags = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
+    }
+    return _logglyUrlTemplate;
 }
 
 @end

@@ -14,12 +14,6 @@
       location = "group:LogglyLogger-CocoaLumberjack"
       name = "LogglyLogger-CocoaLumberjack">
       <FileRef
-         location = "group:LogglyAlertViewHandler.h">
-      </FileRef>
-      <FileRef
-         location = "group:LogglyAlertViewHandler.m">
-      </FileRef>
-      <FileRef
          location = "group:LogglyFields.h">
       </FileRef>
       <FileRef

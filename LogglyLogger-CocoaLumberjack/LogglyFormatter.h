@@ -5,11 +5,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class LogglyFields;
-
-
 @interface LogglyFormatter : NSObject <DDLogFormatter>
-
-- (id)initWithLogglyFields:(LogglyFields *)logglyFields;
-
+@property (strong, nonatomic) NSString *userid;
+@property (strong, nonatomic) NSString *sessionid;
 @end

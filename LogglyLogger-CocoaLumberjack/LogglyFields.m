@@ -13,23 +13,13 @@
 - (NSString *)lang {
     if (!_lang) {
         _lang = [[NSLocale preferredLanguages] objectAtIndex:0];
-        if ([_lang length] > 2) {
-            _lang = [_lang substringToIndex:2];
-        }
     }
     return _lang;
 }
 
 - (NSString *)appname {
     if (!_appname) {
-        _appname = @"Unknown-app";
-#if IS_GT
-        _appname = @"GT-iPhone";
-#elif IS_RESSEN
-        _appname = @"Expressen-iPhone";
-#elif IS_KVP
-        _appname = @"KvP-iPhone";
-#endif
+       _appname = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
     }
     return _appname;
 }
@@ -60,17 +50,6 @@
         _osversion = [UIDevice currentDevice].systemVersion;
     }
     return _osversion;
-}
-
-- (NSString *)platform {
-    if (!_platform) {
-        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-            _platform = @"iPad";
-        } else {
-            _platform = @"iPhone";
-        }
-    }
-    return _platform;
 }
 
 @end

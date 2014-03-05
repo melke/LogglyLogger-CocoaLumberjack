@@ -5,27 +5,42 @@
 
 #import "LogglyFormatter.h"
 #import "LogglyFields.h"
-#import "NSMutableDictionary+NilSafe.h"
+
+#pragma mark NSMutableDictionary category.
+// Defined here so it doesn't spill over to the client projects.
+@interface NSMutableDictionary (NilSafe)
+- (void)setObjectNilSafe:(id)obj forKey:(id)aKey;
+@end
+
+@implementation NSMutableDictionary (NilSafe)
+- (void)setObjectNilSafe:(id)obj forKey:(id)aKey {
+    // skip nils and NSNull
+    if(obj == nil || obj == [NSNull null]) {
+        return;
+    }
+    // skip empty string
+    if([obj isKindOfClass: NSString.class] && [obj length]==0) {
+        return;
+    }
+    // The object is fine, insert it
+    [self setObject:obj forKey:aKey];
+}
+@end
+
+
 
 @implementation LogglyFormatter {
-    int _loggerCount;
     LogglyFields *_logglyFields;
 }
 
 - (id)init
 {
-
-    NSAssert(false,@"Init without params is unavailable, use initWithLogglyFields:(LogglyFields *) instead");
-    return nil;
-}
-
-- (id)initWithLogglyFields:(LogglyFields *)logglyFields
-{
     if((self = [super init]))
     {
-        _logglyFields = logglyFields;
+        _logglyFields = [[LogglyFields alloc] init];
     }
     return self;
+
 }
 
 - (NSString *)formatLogMessage:(DDLogMessage *)logMessage
@@ -57,7 +72,7 @@
     [logfields setObjectNilSafe:_logglyFields.devicename forKey:@"devicename"];
     [logfields setObjectNilSafe:_logglyFields.lang forKey:@"lang"];
     [logfields setObjectNilSafe:_logglyFields.osversion forKey:@"osversion"];
-    [logfields setObjectNilSafe:_logglyFields.platform forKey:@"platform"];
+    [logfields setObjectNilSafe:self.sessionid forKey:@"sessionid"];
     [logfields setObjectNilSafe:logMessage->logMsg forKey:@"rawlogmessage"];
     NSData *jsondata = [logMessage->logMsg dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *jsondictForLogMsg = [NSJSONSerialization JSONObjectWithData:jsondata options:NSJSONReadingAllowFragments error:nil];
@@ -78,17 +93,25 @@
     }
 }
 
-- (void)didAddToLogger:(id <DDLogger>)logger
-{
-    _loggerCount++;
-    NSAssert(_loggerCount <= 1, @"This logger uses date formatting, so it isn't thread-safe. Create a new instance of this class if you need to use it in multiple loggers");
-}
-- (void)willRemoveFromLogger:(id <DDLogger>)logger
-{
-    _loggerCount--;
+#pragma mark property getters
+
+- (NSString *)sessionid {
+    if (!_sessionid) {
+        // generate session id, 10 chars should be enough, we don't want to clutter the log
+        _sessionid = [self generateRandomStringWithSize:10];
+    }
+    return _sessionid;
 }
 
 #pragma mark Private methods
+
+- (NSString*)generateRandomStringWithSize:(int)num {
+    NSMutableString* string = [NSMutableString stringWithCapacity:num];
+    for (int i = 0; i < num; i++) {
+        [string appendFormat:@"%C", (unichar)('a' + arc4random_uniform(25))];
+    }
+    return string;
+}
 
 - (NSString *)iso8601StringFromDate:(NSDate *)date {
     struct tm *timeinfo;
