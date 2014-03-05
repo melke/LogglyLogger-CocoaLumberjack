@@ -81,7 +81,7 @@
     }
 
     NSError *outputJsonError;
-    NSData *outputJson = [NSJSONSerialization dataWithJSONObject:logfields options:nil error:&outputJsonError];
+    NSData *outputJson = [NSJSONSerialization dataWithJSONObject:logfields options:0 error:&outputJsonError];
     if (outputJsonError) {
         return [NSString stringWithFormat:@"{\"loglevel\":\"warning\",\"timestamp\":\"%@\",\"file\":\"%@\",\"linenumber\":\"%d\",\"jsonerror\":\"Could not serialize JSON string\",\"logmessage\":\"%@\"}", iso8601DateString, filestring, logMessage->lineNumber, logMessage->logMsg];
     }

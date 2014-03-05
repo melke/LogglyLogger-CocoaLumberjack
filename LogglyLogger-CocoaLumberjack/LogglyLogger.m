@@ -6,6 +6,7 @@
 #import "LogglyLogger.h"
 #import "AFHTTPRequestOperation.h"
 
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 @implementation LogglyLogger {
     // Some private iVars
