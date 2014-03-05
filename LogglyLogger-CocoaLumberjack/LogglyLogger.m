@@ -124,7 +124,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         // Default to bundle id
         _logglyTags = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
     }
-    return _logglyUrlTemplate;
+    return _logglyTags;
 }
 
 @end

@@ -9,6 +9,7 @@
 #import "LLAppDelegate.h"
 #import "LogglyLogger.h"
 #import "LogglyFormatter.h"
+#import "DDTTYLogger.h"
 
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
@@ -16,6 +17,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
 
     LogglyLogger *logglyLogger = [[LogglyLogger alloc] init];
     logglyLogger.deleteInterval = 0;
