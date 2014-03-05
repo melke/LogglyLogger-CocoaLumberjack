@@ -21,15 +21,11 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
 
     LogglyLogger *logglyLogger = [[LogglyLogger alloc] init];
-    logglyLogger.deleteInterval = 0;
-    logglyLogger.maxAge = 0;
-    logglyLogger.deleteOnEverySave = NO;
-    // todo Set logglyLogger.saveInterval to a higher value
-    logglyLogger.saveInterval = 15;
-    logglyLogger.saveThreshold = 200;
-    logglyLogger.maxLogMessagesInBuffer = 1000;
-    logglyLogger.logglyKey = @"c5e3fb00-c446-4039-a498-4881dab69d38";
     [logglyLogger setLogFormatter:[[LogglyFormatter alloc] init]];
+    logglyLogger.logglyKey = @"c5e3fb00-c446-4039-a498-4881dab69d38";
+    // Set saving every 15 seconds, to speed up the example project, but the default value of 10 minutes is better in apps
+    // that normally don't access the network very often.
+    logglyLogger.saveInterval = 15;
 
     [DDLog addLogger:logglyLogger];
 

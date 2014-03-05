@@ -18,7 +18,12 @@
     self = [super init];
     if (self) {
         _logMessagesArray = [NSMutableArray arrayWithCapacity:0];
-        _maxLogMessagesInBuffer = 1000;
+        self.deleteInterval = 0;
+        self.maxAge = 0;
+        self.deleteOnEverySave = NO;
+        self.saveInterval = 600;
+        self.saveThreshold = 500;
+
         // No NSLOG of first Loggly request at all if not DEBUG
         _hasLoggedFirstLogglyPost = YES;
 #ifdef DEBUG
@@ -37,12 +42,10 @@
     // Return YES if an item was added to the buffer.
     // Return NO if the logMessage was ignored.
     if (!self->formatter) {
-        // No formatter set, just don't log
-        return NO;
-    }
-
-    if ([_logMessagesArray count] > _maxLogMessagesInBuffer) {
-        // Somehow the log messages are not written fast enough, skip messages until next successful save.
+        // No formatter set, don't log
+#ifdef DEBUG
+        NSLog(@"No formatter set in LogglyLogger. Will not log anything.");
+#endif
         return NO;
     }
 
@@ -103,6 +106,12 @@
         NSLog(@"Posting to Loggly: %@", messagesString);
     }
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    // Make sure the post request can finish in background (CocoaLumberjack will make a flush call to all loggers
+    // on when receiving UIApplicationWillTerminateNotification, and this method will be called then).
+    [operation setShouldExecuteAsBackgroundTaskWithExpirationHandler:^{
+        // Handle what to do when the background time has been consumed and iOS will shut us down
+        // So, let's do... nothing at all
+    }];
 
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *response = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
