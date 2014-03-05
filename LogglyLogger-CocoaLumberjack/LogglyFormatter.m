@@ -74,7 +74,11 @@
     [logfields setObjectNilSafe:self.userid forKey:@"userid"];
     [logfields setObjectNilSafe:logMessage->logMsg forKey:@"rawlogmessage"];
     NSData *jsondata = [logMessage->logMsg dataUsingEncoding:NSUTF8StringEncoding];
-    NSDictionary *jsondictForLogMsg = [NSJSONSerialization JSONObjectWithData:jsondata options:NSJSONReadingAllowFragments error:nil];
+    NSError *inputJsonError;
+    NSDictionary *jsondictForLogMsg = [NSJSONSerialization JSONObjectWithData:jsondata options:NSJSONReadingAllowFragments error:&inputJsonError];
+    if (inputJsonError) {
+        return [NSString stringWithFormat:@"{\"loglevel\":\"warning\",\"timestamp\":\"%@\",\"file\":\"%@\",\"fileandlinenumber\":\"%@%d\",\"jsonerror\":\"Could not serialize JSON string\",\"logmessage\":\"%@\"}", iso8601DateString, filestring, filestring, logMessage->lineNumber, logMessage->logMsg];
+    }
     if ([jsondictForLogMsg count] > 0) {
         [logfields addEntriesFromDictionary:jsondictForLogMsg];
     }
