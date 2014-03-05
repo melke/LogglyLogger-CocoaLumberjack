@@ -24,6 +24,12 @@
         self.saveInterval = 600;
         self.saveThreshold = 500;
 
+        // Make sure we POST the logs when the application is suspended
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(db_save:)
+                                                     name:@"UIApplicationWillResignActiveNotification"
+                                                   object:nil];
+
         // No NSLOG of first Loggly request at all if not DEBUG
         _hasLoggedFirstLogglyPost = YES;
 #ifdef DEBUG
@@ -106,8 +112,7 @@
         NSLog(@"Posting to Loggly: %@", messagesString);
     }
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    // Make sure the post request can finish in background (CocoaLumberjack will make a flush call to all loggers
-    // on when receiving UIApplicationWillTerminateNotification, and this method will be called then).
+    // Make sure the post request can finish in background
     [operation setShouldExecuteAsBackgroundTaskWithExpirationHandler:^{
         // Handle what to do when the background time has been consumed and iOS will shut us down
         // So, let's do... nothing at all

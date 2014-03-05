@@ -23,7 +23,7 @@ PODS:
   - CocoaLumberjack/Core (1.8.1)
   - CocoaLumberjack/Extensions (1.8.1):
     - CocoaLumberjack/Core
-  - LogglyLogger-CocoaLumberjack (0.1.5):
+  - LogglyLogger-CocoaLumberjack (0.1.6):
     - AFNetworking (~> 2.0)
     - CocoaLumberjack (~> 1.6)
 
@@ -37,6 +37,6 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFNetworking: e8cfd8f3fe3bfe19124a0cc63f4d45752d892a56
   CocoaLumberjack: 020378ec400d658923bf5887178394f65f052c90
-  LogglyLogger-CocoaLumberjack: b1717189dcb64453360d30941d9c86061680a1fe
+  LogglyLogger-CocoaLumberjack: 79facbb74d103f0c7e85c1b3839e310743dc4384
 
 COCOAPODS: 0.29.0
