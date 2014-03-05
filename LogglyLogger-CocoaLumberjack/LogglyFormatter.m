@@ -77,7 +77,7 @@
     NSError *inputJsonError;
     NSDictionary *jsondictForLogMsg = [NSJSONSerialization JSONObjectWithData:jsondata options:NSJSONReadingAllowFragments error:&inputJsonError];
     if (inputJsonError) {
-        return [NSString stringWithFormat:@"{\"loglevel\":\"warning\",\"timestamp\":\"%@\",\"file\":\"%@\",\"fileandlinenumber\":\"%@%d\",\"jsonerror\":\"Could not serialize JSON string\",\"logmessage\":\"%@\"}", iso8601DateString, filestring, filestring, logMessage->lineNumber, logMessage->logMsg];
+        return [NSString stringWithFormat:@"{\"loglevel\":\"warning\",\"timestamp\":\"%@\",\"file\":\"%@\",\"fileandlinenumber\":\"%@:%d\",\"jsonerror\":\"Could not serialize JSON string\",\"rawlogmessage\":\"%@\"}", iso8601DateString, filestring, filestring, logMessage->lineNumber, logMessage->logMsg];
     }
     if ([jsondictForLogMsg count] > 0) {
         [logfields addEntriesFromDictionary:jsondictForLogMsg];
@@ -86,13 +86,13 @@
     NSError *outputJsonError;
     NSData *outputJson = [NSJSONSerialization dataWithJSONObject:logfields options:0 error:&outputJsonError];
     if (outputJsonError) {
-        return [NSString stringWithFormat:@"{\"loglevel\":\"warning\",\"timestamp\":\"%@\",\"file\":\"%@\",\"fileandlinenumber\":\"%@%d\",\"jsonerror\":\"Could not serialize JSON string\",\"logmessage\":\"%@\"}", iso8601DateString, filestring, filestring, logMessage->lineNumber, logMessage->logMsg];
+        return [NSString stringWithFormat:@"{\"loglevel\":\"warning\",\"timestamp\":\"%@\",\"file\":\"%@\",\"fileandlinenumber\":\"%@:%d\",\"jsonerror\":\"Could not serialize JSON string\",\"rawlogmessage\":\"%@\"}", iso8601DateString, filestring, filestring, logMessage->lineNumber, logMessage->logMsg];
     }
     NSString *jsonString = [[NSString alloc] initWithData:outputJson encoding:NSUTF8StringEncoding];
     if (jsonString) {
         return jsonString;
     } else {
-        return [NSString stringWithFormat:@"{\"loglevel\":\"warning\",\"timestamp\":\"%@\",\"file\":\"%@\",\"fileandlinenumber\":\"%@%d\",\"jsonerror\":\"Could not serialize JSON string\",\"logmessage\":\"%@\"}", iso8601DateString, filestring, filestring, logMessage->lineNumber, logMessage->logMsg];
+        return [NSString stringWithFormat:@"{\"loglevel\":\"warning\",\"timestamp\":\"%@\",\"file\":\"%@\",\"fileandlinenumber\":\"%@%d\",\"jsonerror\":\"Could not serialize JSON string\",\"rawlogmessage\":\"%@\"}", iso8601DateString, filestring, filestring, logMessage->lineNumber, logMessage->logMsg];
     }
 }
 

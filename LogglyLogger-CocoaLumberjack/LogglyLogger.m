@@ -22,7 +22,7 @@
         self.maxAge = 0;
         self.deleteOnEverySave = NO;
         self.saveInterval = 600;
-        self.saveThreshold = 500;
+        self.saveThreshold = 1000;
 
         // Make sure we POST the logs when the application is suspended
         [[NSNotificationCenter defaultCenter] addObserver:self
