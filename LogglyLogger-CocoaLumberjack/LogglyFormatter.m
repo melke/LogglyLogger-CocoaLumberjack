@@ -63,7 +63,6 @@
     NSString *filestring = [self lastPartOfFullFilePath:[NSString stringWithFormat:@"%s", logMessage->file]];
 
     [logfields setObjectNilSafe:filestring forKey:@"file"];
-    [logfields setObjectNilSafe:[NSString stringWithFormat:@"%d", logMessage->lineNumber] forKey:@"linenumber"];
     [logfields setObjectNilSafe:[NSString stringWithFormat:@"%@:%d", filestring, logMessage->lineNumber] forKey:@"fileandlinenumber"];
     [logfields setObjectNilSafe:_logglyFields.appname forKey:@"appname"];
     [logfields setObjectNilSafe:_logglyFields.appversion forKey:@"appversion"];
@@ -83,13 +82,13 @@
     NSError *outputJsonError;
     NSData *outputJson = [NSJSONSerialization dataWithJSONObject:logfields options:0 error:&outputJsonError];
     if (outputJsonError) {
-        return [NSString stringWithFormat:@"{\"loglevel\":\"warning\",\"timestamp\":\"%@\",\"file\":\"%@\",\"linenumber\":\"%d\",\"jsonerror\":\"Could not serialize JSON string\",\"logmessage\":\"%@\"}", iso8601DateString, filestring, logMessage->lineNumber, logMessage->logMsg];
+        return [NSString stringWithFormat:@"{\"loglevel\":\"warning\",\"timestamp\":\"%@\",\"file\":\"%@\",\"fileandlinenumber\":\"%@%d\",\"jsonerror\":\"Could not serialize JSON string\",\"logmessage\":\"%@\"}", iso8601DateString, filestring, filestring, logMessage->lineNumber, logMessage->logMsg];
     }
     NSString *jsonString = [[NSString alloc] initWithData:outputJson encoding:NSUTF8StringEncoding];
     if (jsonString) {
         return jsonString;
     } else {
-        return [NSString stringWithFormat:@"{\"loglevel\":\"warning\",\"timestamp\":\"%@\",\"file\":\"%@\",\"linenumber\":\"%d\",\"jsonerror\":\"Could not serialize JSON string\",\"logmessage\":\"%@\"}", iso8601DateString, filestring, logMessage->lineNumber, logMessage->logMsg];
+        return [NSString stringWithFormat:@"{\"loglevel\":\"warning\",\"timestamp\":\"%@\",\"file\":\"%@\",\"fileandlinenumber\":\"%@%d\",\"jsonerror\":\"Could not serialize JSON string\",\"logmessage\":\"%@\"}", iso8601DateString, filestring, filestring, logMessage->lineNumber, logMessage->logMsg];
     }
 }
 

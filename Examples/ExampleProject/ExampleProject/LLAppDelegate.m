@@ -35,6 +35,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
     DDLogVerbose(@"Verbose no JSON in log message");
     DDLogVerbose(@"{\"a_json_key\":\"some verbose json value\"}");
+    DDLogVerbose(@"{badjson:\"This json is invalid (no quotes around key)\"}");
     DDLogInfo(@"Info no JSON in log message");
     DDLogInfo(@"{\"another_json_key\":\"some info json value\"}");
 
