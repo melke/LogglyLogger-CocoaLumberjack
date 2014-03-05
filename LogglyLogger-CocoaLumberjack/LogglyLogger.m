@@ -26,7 +26,7 @@
 
         // Make sure we POST the logs when the application is suspended
         [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(db_save:)
+                                                 selector:@selector(saveOnSuspend)
                                                      name:@"UIApplicationWillResignActiveNotification"
                                                    object:nil];
 
@@ -152,6 +152,12 @@
         _logglyTags = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
     }
     return _logglyTags;
+}
+
+- (void) saveOnSuspend {
+    // todo remove
+    NSLog(@"saving on suspend");
+    [self db_save];
 }
 
 @end
