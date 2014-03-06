@@ -1,6 +1,5 @@
 //
 // Created by Mats Melke on 2014-02-20.
-// Copyright (c) 2014 Expressen. All rights reserved.
 //
 
 #import "LogglyLogger.h"
