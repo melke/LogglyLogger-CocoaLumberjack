@@ -97,9 +97,9 @@ Pretty nice, huh?
 
 ##Feedback and Contribution
 
-All feedback and contribution is very appreciated. Please send pull requests
+All feedback and contribution is very appreciated. Please send pull requests, create issues
 or just send an email to [mats.melke@gmail.com](mailto:mats.melke@gmail.com).
 
 ##Copyrights
 
-* Copyright (c) 2010-2014 Mats Melke. Please see LICENSE.txt for details.
+* Copyright (c) 2014- Mats Melke. Please see LICENSE.txt for details.

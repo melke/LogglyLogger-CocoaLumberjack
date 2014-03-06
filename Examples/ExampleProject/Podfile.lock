@@ -23,20 +23,20 @@ PODS:
   - CocoaLumberjack/Core (1.8.1)
   - CocoaLumberjack/Extensions (1.8.1):
     - CocoaLumberjack/Core
-  - LogglyLogger-CocoaLumberjack (0.1.8):
+  - LogglyLogger-CocoaLumberjack (0.2.0):
     - AFNetworking (~> 2.0)
     - CocoaLumberjack (~> 1.6)
 
 DEPENDENCIES:
-  - LogglyLogger-CocoaLumberjack (from `../../LogglyLogger-CocoaLumberjack.podspec`)
+  - LogglyLogger-CocoaLumberjack (from `https://github.com/melke/LogglyLogger-CocoaLumberjack.git`)
 
 EXTERNAL SOURCES:
   LogglyLogger-CocoaLumberjack:
-    :path: ../../LogglyLogger-CocoaLumberjack.podspec
+    :git: https://github.com/melke/LogglyLogger-CocoaLumberjack.git
 
 SPEC CHECKSUMS:
   AFNetworking: e8cfd8f3fe3bfe19124a0cc63f4d45752d892a56
   CocoaLumberjack: 020378ec400d658923bf5887178394f65f052c90
-  LogglyLogger-CocoaLumberjack: 70967c92fcbf9dc318783c921118ee352016dab0
+  LogglyLogger-CocoaLumberjack: b0c922dd6f7be0cc0ca6bcd4686045784f0c94a8
 
 COCOAPODS: 0.29.0
