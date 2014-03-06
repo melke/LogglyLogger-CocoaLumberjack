@@ -4,6 +4,7 @@
 
 #import "LogglyFormatter.h"
 #import "LogglyFields.h"
+#define kLogglyFormatStringWhenLogMsgIsNotJson @"{\"loglevel\":\"%@\",\"timestamp\":\"%@\",\"file\":\"%@\",\"fileandlinenumber\":\"%@:%d\",\"appname\":\"%@\",\"appversion\":\"%@\",\"devicemodel\":\"%@\",\"devicename\":\"%@\",\"lang\":\"%@\",\"osversion\":\"%@\",\"sessionid\":\"%@\",\"userid\":\"%@\",\"rawlogmessage\":\"%@\"}"
 
 #pragma mark NSMutableDictionary category.
 // Defined here so it doesn't spill over to the client projects.
@@ -71,12 +72,14 @@
     [logfields setObjectNilSafe:_logglyFields.osversion forKey:@"osversion"];
     [logfields setObjectNilSafe:self.sessionid forKey:@"sessionid"];
     [logfields setObjectNilSafe:self.userid forKey:@"userid"];
-    [logfields setObjectNilSafe:logMessage->logMsg forKey:@"rawlogmessage"];
-    NSData *jsondata = [logMessage->logMsg dataUsingEncoding:NSUTF8StringEncoding];
+    // newlines are not allowed in POSTS to Loggly
+    NSString *logMsg = [logMessage->logMsg stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
+    [logfields setObjectNilSafe:logMsg forKey:@"rawlogmessage"];
+    NSData *jsondata = [logMsg dataUsingEncoding:NSUTF8StringEncoding];
     NSError *inputJsonError;
     NSDictionary *jsondictForLogMsg = [NSJSONSerialization JSONObjectWithData:jsondata options:NSJSONReadingAllowFragments error:&inputJsonError];
     if (inputJsonError) {
-        return [NSString stringWithFormat:@"{\"loglevel\":\"warning\",\"timestamp\":\"%@\",\"file\":\"%@\",\"fileandlinenumber\":\"%@:%d\",\"jsonerror\":\"Could not serialize JSON string\",\"rawlogmessage\":\"%@\"}", iso8601DateString, filestring, filestring, logMessage->lineNumber, logMessage->logMsg];
+        return [self formattedNonJsonLogMsgWithLogLevel:logLevel andIso8601DateString:iso8601DateString andFileString:filestring andLineNumber:logMessage->lineNumber andLogMsg:logMsg];
     }
     if ([jsondictForLogMsg count] > 0) {
         [logfields addEntriesFromDictionary:jsondictForLogMsg];
@@ -85,13 +88,13 @@
     NSError *outputJsonError;
     NSData *outputJson = [NSJSONSerialization dataWithJSONObject:logfields options:0 error:&outputJsonError];
     if (outputJsonError) {
-        return [NSString stringWithFormat:@"{\"loglevel\":\"warning\",\"timestamp\":\"%@\",\"file\":\"%@\",\"fileandlinenumber\":\"%@:%d\",\"jsonerror\":\"Could not serialize JSON string\",\"rawlogmessage\":\"%@\"}", iso8601DateString, filestring, filestring, logMessage->lineNumber, logMessage->logMsg];
+        return [self formattedNonJsonLogMsgWithLogLevel:logLevel andIso8601DateString:iso8601DateString andFileString:filestring andLineNumber:logMessage->lineNumber andLogMsg:logMsg];
     }
     NSString *jsonString = [[NSString alloc] initWithData:outputJson encoding:NSUTF8StringEncoding];
     if (jsonString) {
         return jsonString;
     } else {
-        return [NSString stringWithFormat:@"{\"loglevel\":\"warning\",\"timestamp\":\"%@\",\"file\":\"%@\",\"fileandlinenumber\":\"%@%d\",\"jsonerror\":\"Could not serialize JSON string\",\"rawlogmessage\":\"%@\"}", iso8601DateString, filestring, filestring, logMessage->lineNumber, logMessage->logMsg];
+        return [self formattedNonJsonLogMsgWithLogLevel:logLevel andIso8601DateString:iso8601DateString andFileString:filestring andLineNumber:logMessage->lineNumber andLogMsg:logMsg];
     }
 }
 
@@ -106,6 +109,12 @@
 }
 
 #pragma mark Private methods
+
+- (NSString *) formattedNonJsonLogMsgWithLogLevel:(NSString *)logLevel andIso8601DateString:(NSString *)iso8601DateString andFileString:(NSString *)filestring andLineNumber:(int)lineNumber andLogMsg:(NSString *)logMsg {
+    return [NSString stringWithFormat:kLogglyFormatStringWhenLogMsgIsNotJson, logLevel, iso8601DateString, filestring, filestring, lineNumber,
+                                      _logglyFields.appname, _logglyFields.appversion, _logglyFields.devicemodel, _logglyFields.devicename, _logglyFields.lang,
+                                      _logglyFields.osversion, self.sessionid, self.userid, logMsg];
+}
 
 - (NSString*)generateRandomStringWithSize:(int)num {
     NSMutableString* string = [NSMutableString stringWithCapacity:num];
