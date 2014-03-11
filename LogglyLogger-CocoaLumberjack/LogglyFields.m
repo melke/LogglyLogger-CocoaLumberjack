@@ -5,50 +5,67 @@
 #import "LogglyFields.h"
 
 
+
 @implementation LogglyFields {
+    dispatch_queue_t _queue;
+    NSDictionary *_fieldsDictionary;
+}
+
+- (id)init {
+    if((self = [super init])) {
+        _queue = dispatch_queue_create("se.baresi.logglylogger.logglyfields.queue", NULL);
+        NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:0];
+        [dict setObject:[[NSLocale preferredLanguages] objectAtIndex:0] forKey:@"lang"];
+        [dict setObject:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"] forKey:@"appname"];
+        [dict setObject:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] forKey:@"appversion"];
+        [dict setObject:[UIDevice currentDevice].name forKey:@"devicename"];
+        [dict setObject:[UIDevice currentDevice].model forKey:@"devicemodel"];
+        [dict setObject:[UIDevice currentDevice].systemVersion forKey:@"osversion"];
+        [dict setObject:[self generateRandomStringWithSize:10] forKey:@"sessionid"];
+
+        _fieldsDictionary = [NSDictionary dictionaryWithDictionary:dict];
+    }
+    return self;
 
 }
 
-- (NSString *)lang {
-    if (!_lang) {
-        _lang = [[NSLocale preferredLanguages] objectAtIndex:0];
-    }
-    return _lang;
+#pragma mark implementation of LogglyFieldsDelegate protocol
+
+- (NSDictionary *)logglyFieldsToIncludeInEveryLogStatement {
+    // The dict may be altered by one of the setters, so lets use a queue for thread safety
+    __block NSDictionary *dict;
+    dispatch_sync(_queue, ^{
+        dict = [_fieldsDictionary copy];
+    });
+    return dict;
 }
 
-- (NSString *)appname {
-    if (!_appname) {
-       _appname = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
-    }
-    return _appname;
+#pragma mark Property setters
+
+- (void)setSessionid:(NSString *)sessionid {
+    dispatch_barrier_async(_queue, ^{
+        NSMutableDictionary *dict = [_fieldsDictionary mutableCopy];
+        [dict setObject:sessionid forKey:@"sessionid"];
+        _fieldsDictionary = [NSDictionary dictionaryWithDictionary:dict];
+    });
 }
 
-- (NSString *)appversion {
-    if (!_appversion) {
-        _appversion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
-    }
-    return _appversion;
+- (void)setUserid:(NSString *)userid {
+    dispatch_barrier_async(_queue, ^{
+        NSMutableDictionary *dict = [_fieldsDictionary mutableCopy];
+        [dict setObject:userid forKey:@"userid"];
+        _fieldsDictionary = [NSDictionary dictionaryWithDictionary:dict];
+    });
 }
 
-- (NSString *)devicename {
-    if (!_devicename) {
-        _devicename = [UIDevice currentDevice].name;
-    }
-    return _devicename;
-}
+#pragma mark Private methods
 
-- (NSString *)devicemodel {
-    if (!_devicemodel) {
-        _devicemodel = [UIDevice currentDevice].model;
+- (NSString*)generateRandomStringWithSize:(int)num {
+    NSMutableString* string = [NSMutableString stringWithCapacity:num];
+    for (int i = 0; i < num; i++) {
+        [string appendFormat:@"%C", (unichar)('a' + arc4random_uniform(25))];
     }
-    return _devicemodel;
-}
-
-- (NSString *)osversion {
-    if (!_osversion) {
-        _osversion = [UIDevice currentDevice].systemVersion;
-    }
-    return _osversion;
+    return string;
 }
 
 @end

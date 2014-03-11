@@ -54,6 +54,13 @@
         return NO;
     }
 
+    if ([_logMessagesArray count] > 2000) {
+        // Too much logging is coming in too fast. Let's not put this message in the array
+        // However, we want the abstract logger too retry at some time later, so
+        // let's return YES
+        return YES;
+    }
+
     [_logMessagesArray addObject:[self->formatter formatLogMessage:logMessage]];
     return YES;
 }

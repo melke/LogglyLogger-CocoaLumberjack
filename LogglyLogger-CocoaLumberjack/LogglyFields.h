@@ -3,14 +3,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LogglyFormatter.h"
 
-
-@interface LogglyFields : NSObject
-@property (strong, nonatomic) NSString *lang;
-@property (strong, nonatomic) NSString *appname;
-@property (strong, nonatomic) NSString *appversion;
-@property (strong, nonatomic) NSString *devicename;
-@property (strong, nonatomic) NSString *devicemodel;
-@property (strong, nonatomic) NSString *osversion;
-
+@interface LogglyFields : NSObject <LogglyFieldsDelegate>
+@property (strong, nonatomic) NSString *userid;
+@property (strong, nonatomic) NSString *sessionid;
 @end

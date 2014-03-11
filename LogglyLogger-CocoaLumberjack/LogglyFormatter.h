@@ -5,7 +5,10 @@
 #import <Foundation/Foundation.h>
 #import "DDLog.h"
 
+@protocol LogglyFieldsDelegate
+- (NSDictionary *)logglyFieldsToIncludeInEveryLogStatement;
+@end
+
 @interface LogglyFormatter : NSObject <DDLogFormatter>
-@property (strong, nonatomic) NSString *userid;
-@property (strong, nonatomic) NSString *sessionid;
+- (id)initWithLogglyFieldsDelegate:(id<LogglyFieldsDelegate>)delegate;
 @end
