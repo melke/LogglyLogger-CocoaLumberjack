@@ -28,11 +28,11 @@ PODS:
     - CocoaLumberjack (~> 1.6)
 
 DEPENDENCIES:
-  - LogglyLogger-CocoaLumberjack (from `https://github.com/melke/LogglyLogger-CocoaLumberjack.git`)
+  - LogglyLogger-CocoaLumberjack (from `~/git/baresi/LogglyLogger-CocoaLumberjack`)
 
 EXTERNAL SOURCES:
   LogglyLogger-CocoaLumberjack:
-    :git: https://github.com/melke/LogglyLogger-CocoaLumberjack.git
+    :path: ~/git/baresi/LogglyLogger-CocoaLumberjack
 
 SPEC CHECKSUMS:
   AFNetworking: e8cfd8f3fe3bfe19124a0cc63f4d45752d892a56

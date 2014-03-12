@@ -23,6 +23,7 @@
         [dict setObject:[UIDevice currentDevice].systemVersion forKey:@"osversion"];
         [dict setObject:[self generateRandomStringWithSize:10] forKey:@"sessionid"];
 
+
         _fieldsDictionary = [NSDictionary dictionaryWithDictionary:dict];
     }
     return self;
