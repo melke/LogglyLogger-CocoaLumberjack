@@ -9,6 +9,7 @@
 #import "LogglyLogger.h"
 #import "LogglyFormatter.h"
 #import "DDTTYLogger.h"
+#import "LogglyFields.h"
 
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
@@ -20,7 +21,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
 
     LogglyLogger *logglyLogger = [[LogglyLogger alloc] init];
-    [logglyLogger setLogFormatter:[[LogglyFormatter alloc] init]];
+//    [logglyLogger setLogFormatter:[[LogglyFormatter alloc] init]];
+    LogglyFields *logglyFields = [[LogglyFields alloc] init];
+    LogglyFormatter *logglyFormatter = [[LogglyFormatter alloc] initWithLogglyFieldsDelegate:logglyFields];
+    [logglyLogger setLogFormatter:logglyFormatter];
     logglyLogger.logglyKey = @"c5e3fb00-c446-4039-a498-4881dab69d38";
     // Set saving every 15 seconds, to speed up the example project, but the default value of 10 minutes is better in apps
     // that normally don't access the network very often.
@@ -30,8 +34,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
     DDLogVerbose(@"Verbose no JSON in log message");
     DDLogVerbose(@"{\"a_json_key\":\"some verbose json value\"}");
+    logglyFields.sessionid = @"nysession";
     DDLogVerbose(@"{badjson:\"This json is invalid (no quotes around key)\"}");
     DDLogInfo(@"Info no JSON in log message");
+    logglyFields.userid = @"En user till sist";
     DDLogInfo(@"{\"another_json_key\":\"some info json value\"}");
 
 

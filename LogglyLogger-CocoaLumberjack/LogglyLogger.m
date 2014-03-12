@@ -11,13 +11,11 @@
     NSMutableArray *_logMessagesArray;
     NSURL *_logglyURL;
     BOOL _hasLoggedFirstLogglyPost;
-    dispatch_queue_t _array_manipulation_queue;
 }
 
 - (id)init {
     self = [super init];
     if (self) {
-        _queue = _array_manipulation_queue("se.baresi.logglylogger.logglylogger.queue", NULL);
 
         _logMessagesArray = [NSMutableArray arrayWithCapacity:0];
         self.deleteInterval = 0;
@@ -59,8 +57,8 @@
 
     if ([_logMessagesArray count] > 2000) {
         // Too much logging is coming in too fast. Let's not put this message in the array
-        // However, we want the abstract logger too retry at some time later, so
-        // let's return YES
+        // However, we want the abstract logger to retry at some time later, so
+        // let's return YES, so the log message counters in the abstract logger keeps getting incremented.
         return YES;
     }
 

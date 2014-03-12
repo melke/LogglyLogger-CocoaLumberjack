@@ -57,6 +57,7 @@
 		E5D5797418C0C5BF00CB26C6 /* ExampleProjectTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ExampleProjectTests-Info.plist"; sourceTree = "<group>"; };
 		E5D5797618C0C5BF00CB26C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E5D5797818C0C5BF00CB26C6 /* ExampleProjectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExampleProjectTests.m; sourceTree = "<group>"; };
+		E5F7329018D064B9000A2930 /* LogglyLogger-CocoaLumberjack */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "LogglyLogger-CocoaLumberjack"; path = "../../LogglyLogger-CocoaLumberjack"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +88,7 @@
 		E5D5794118C0C5BF00CB26C6 = {
 			isa = PBXGroup;
 			children = (
+				E5F7329018D064B9000A2930 /* LogglyLogger-CocoaLumberjack */,
 				E5D5795318C0C5BF00CB26C6 /* ExampleProject */,
 				E5D5797218C0C5BF00CB26C6 /* ExampleProjectTests */,
 				E5D5794C18C0C5BF00CB26C6 /* Frameworks */,

@@ -73,17 +73,23 @@ in many of your log statements.
 
 ##Advanced Usage
 
+###Loggly tags
+
 LogglyLogger will use the bundle id of your app as a Loggly tag. You can create a "source group" in Loggly
 that contains all log statements that has a specific tag. This way, you can easily use the same Loggly
 account for many apps. If you don't want to use bundle id as the tag or if you want to
 use multiple tags, you can set the property logglyTags in the LogglyFormatter.
 (comma-separated list of tags, no whitespace in or between tags)
 
+###LogglyLogger settings
+
 There are some settings you can set on the LogglyLogger. Most of them are inherited from the abstract class and
 they all have reasonable default values.
 
   - saveInterval - Number of seconds between posting log statements to Loggly. Default = 600. Note that the logs are always posted when the app is suspended. Setting this to a low value may turn your app into a battery hog.
   - saveThreshold - Number of log messages before forcing a post, regardless of how long time it has been since the last post. Default 1000.
+
+###Tracking sessions and users
 
 To track a specific user you can set the userid property on the LogglyFormatter. The username
 will then be included in every log statement until the app is terminated by iOS.
@@ -94,6 +100,8 @@ in your app where the user can enter a string, which you set as the sessionid. A
 you can set the CocoaLumberjack log level to a finer level for this user. Now you can follow
 the detailed logs in Loggly for this particular user, by filtering out all but this particular session.
 Pretty nice, huh?
+
+###
 
 ##Feedback and Contribution
 
