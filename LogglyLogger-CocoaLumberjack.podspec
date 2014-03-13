@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '6.0'
 
-  s.source       = { :git => "https://github.com/melke/LogglyLogger-CocoaLumberjack.git", :tag => s.version }
+  s.source       = { :git => "https://github.com/melke/LogglyLogger-CocoaLumberjack.git", :tag => "0.3.0" }
 
   s.source_files  = 'LogglyLogger-CocoaLumberjack', 'LogglyLogger-CocoaLumberjack/**/*.{h,m}'
   s.requires_arc = true
