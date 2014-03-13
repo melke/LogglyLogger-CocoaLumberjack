@@ -22,12 +22,9 @@
         [dict setObject:[UIDevice currentDevice].model forKey:@"devicemodel"];
         [dict setObject:[UIDevice currentDevice].systemVersion forKey:@"osversion"];
         [dict setObject:[self generateRandomStringWithSize:10] forKey:@"sessionid"];
-
-
         _fieldsDictionary = [NSDictionary dictionaryWithDictionary:dict];
     }
     return self;
-
 }
 
 #pragma mark implementation of LogglyFieldsDelegate protocol
