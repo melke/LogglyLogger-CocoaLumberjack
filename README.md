@@ -20,9 +20,10 @@ Or manually:
 
     git clone https://github.com/melke/LogglyLogger-CocoaLumberjack.git
     cd LogglyLogger-CocoaLumberjack
+    # now add LogglyLogger-CocoaLumberjack to your project by dragging everything in the
+    # subfolder `LogglyLogger-CocoaLumberjack` directory into your project.
 
-Now add LogglyLogger-CocoaLumberjack to your project by dragging everything in the sub folder `LogglyLogger-CocoaLumberjack` directory into your project.
-If you install manually, you must also include AFNetworking >2.0 and CocoaLumberjack >1.6 in your project.
+(If you install manually, you must also include AFNetworking >2.0 and CocoaLumberjack >1.6 in your project)
 
 ##Usage
 
