@@ -14,10 +14,7 @@ There are two ways to add LogglyLogger-CocoaLumberjack to your project:
 
 Using [Cocoapods](cocoapods.org) (preferred):
 
-    pod "LogglyLogger-CocoaLumberjack", :git => 'https://github.com/melke/LogglyLogger-CocoaLumberjack.git', :tag => '0.3.0'
-
-This pod will hopefully soon be in the public Cocoapods repository. When that happens, you will no longer need to refer to my Github repo in your podfile.
-(I will update this README when LogglyLogger-CocoaLumberjack is in the public repo)
+    pod "LogglyLogger-CocoaLumberjack", "~> 0.3"
 
 Or manually:
 
