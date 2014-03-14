@@ -4,9 +4,9 @@ LogglyLogger-CocoaLumberjack is a custom logger for [CocoaLumberjack](https://gi
 
 ##Requirements
 
-A Loggly account. (Note, they charge for higher volumes of logging)
-CocoaLumberjack >= 1.6
-AFNetworking >= 2.0
+  - A Loggly account. (Note, they charge for higher volumes of logging)
+  - CocoaLumberjack >= 1.6
+  - AFNetworking >= 2.0
 
 LogglyLogger-CocoaLumberjack uses ARC. If your project doesn't use ARC, you can enable it per file using the `-fobjc-arc` compiler flag under "Build Phases" and "Compile Sources" on your project's target in Xcode.
 
