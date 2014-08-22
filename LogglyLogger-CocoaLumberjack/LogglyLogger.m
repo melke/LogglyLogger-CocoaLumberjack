@@ -40,6 +40,10 @@
     return self;
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 #pragma mark Overridden methods from DDAbstractDatabaseLogger
 
