@@ -17,7 +17,6 @@
     self = [super init];
     if (self) {
 
-        _logMessagesArray = [NSMutableArray arrayWithCapacity:0];
         self.deleteInterval = 0;
         self.maxAge = 0;
         self.deleteOnEverySave = NO;
@@ -58,6 +57,11 @@
 #endif
         return NO;
     }
+    
+    // Initialize the log messages array if we havn't already (or its recently been cleared by saving to loggly).
+    if ( ! _logMessagesArray) {
+        _logMessagesArray = [NSMutableArray arrayWithCapacity:1000];
+    }
 
     if ([_logMessagesArray count] > 2000) {
         // Too much logging is coming in too fast. Let's not put this message in the array
@@ -82,6 +86,10 @@
 
 - (void)db_saveAndDelete
 {
+    if ( ! [self isOnInternalLoggerQueue]) {
+        NSAssert(NO, @"db_saveAndDelete should only be executed on the internalLoggerQueue thread, if you're seeing this, your doing it wrong.");
+    }
+    
     // If no log messages in array, just return
     if ([_logMessagesArray count] == 0) {
         return;
@@ -168,7 +176,10 @@
 #ifdef DEBUG
     NSLog(@"Suspending, posting logs to Loggly");
 #endif
-    [self db_save];
+    
+    dispatch_async(loggerQueue, ^{
+        [self db_save];
+    });
 }
 
 @end
