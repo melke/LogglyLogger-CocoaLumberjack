@@ -132,10 +132,12 @@
     }
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     // Make sure the post request can finish in background
+#ifndef AF_APP_EXTENSIONS
     [operation setShouldExecuteAsBackgroundTaskWithExpirationHandler:^{
         // Handle what to do when the background time has been consumed and iOS will shut us down
         // So, let's do... nothing at all
     }];
+#endif
 
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *response = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
