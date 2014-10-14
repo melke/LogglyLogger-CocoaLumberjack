@@ -127,9 +127,6 @@
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[messagesString dataUsingEncoding:NSUTF8StringEncoding]];
 
-    if (!_hasLoggedFirstLogglyPost) {
-        NSLog(@"Posting to Loggly: %@", messagesString);
-    }
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     // Make sure the post request can finish in background
 #ifndef AF_APP_EXTENSIONS
@@ -142,7 +139,6 @@
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSString *response = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
         if (!_hasLoggedFirstLogglyPost) {
-            NSLog(@"Loggly post response = %@. This was the last NSLog statement you will see from LogglyLogger. The rest of the posts to Loggly will be done silently",response);
             _hasLoggedFirstLogglyPost = YES;
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

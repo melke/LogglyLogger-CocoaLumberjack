@@ -8,7 +8,7 @@
 #import "LLAppDelegate.h"
 #import "LogglyLogger.h"
 #import "LogglyFormatter.h"
-#import "DDTTYLogger.h"
+#import <CocoaLumberjack/CocoaLumberjack.h>
 #import "LogglyFields.h"
 
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;

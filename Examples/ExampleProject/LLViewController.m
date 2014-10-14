@@ -6,7 +6,7 @@
 //
 
 #import "LLViewController.h"
-#import "DDLog.h"
+#import <CocoaLumberjack/CocoaLumberjack.h>
 
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 

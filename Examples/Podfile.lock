@@ -1,0 +1,48 @@
+PODS:
+  - AFNetworking (2.4.1):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+    - AFNetworking/UIKit
+  - AFNetworking/NSURLConnection (2.4.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.4.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.4.1)
+  - AFNetworking/Security (2.4.1)
+  - AFNetworking/Serialization (2.4.1)
+  - AFNetworking/UIKit (2.4.1):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - CocoaLumberjack (2.0.0-beta2):
+    - CocoaLumberjack/CLI
+    - CocoaLumberjack/Core
+    - CocoaLumberjack/Extensions
+  - CocoaLumberjack/CLI (2.0.0-beta2):
+    - CocoaLumberjack/Core
+  - CocoaLumberjack/Core (2.0.0-beta2)
+  - CocoaLumberjack/Extensions (2.0.0-beta2):
+    - CocoaLumberjack/Core
+  - LogglyLogger-CocoaLumberjack (0.3.1):
+    - AFNetworking (~> 2.0)
+    - CocoaLumberjack (>= 2.0.0-beta)
+
+DEPENDENCIES:
+  - LogglyLogger-CocoaLumberjack (from `../../LogglyLogger-CocoaLumberjack`)
+
+EXTERNAL SOURCES:
+  LogglyLogger-CocoaLumberjack:
+    :path: ../../LogglyLogger-CocoaLumberjack
+
+SPEC CHECKSUMS:
+  AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
+  CocoaLumberjack: 956d3fb98fed498a13d56499f262c975ef431c98
+  LogglyLogger-CocoaLumberjack: a0c7d06132384a43536c2c2d8684ec66c4f18eec
+
+COCOAPODS: 0.34.2
