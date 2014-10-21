@@ -96,7 +96,7 @@
     }
 
     // Get reference to log messages
-    NSArray *oldLogMessagesArray = _logMessagesArray;
+    NSArray *oldLogMessagesArray = [_logMessagesArray copy];
 
     // reset array
     _logMessagesArray = [NSMutableArray arrayWithCapacity:0];
