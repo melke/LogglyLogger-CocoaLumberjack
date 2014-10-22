@@ -1,42 +1,44 @@
 PODS:
-  - AFNetworking (2.2.0):
+  - AFNetworking (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
     - AFNetworking/UIKit
-  - AFNetworking/NSURLConnection (2.2.0):
+  - AFNetworking/NSURLConnection (2.4.1):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.2.0):
-    - AFNetworking/NSURLConnection
-  - AFNetworking/Reachability (2.2.0)
-  - AFNetworking/Security (2.2.0)
-  - AFNetworking/Serialization (2.2.0)
-  - AFNetworking/UIKit (2.2.0):
+  - AFNetworking/NSURLSession (2.4.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.4.1)
+  - AFNetworking/Security (2.4.1)
+  - AFNetworking/Serialization (2.4.1)
+  - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - CocoaLumberjack (1.8.1):
+  - CocoaLumberjack (1.9.2):
     - CocoaLumberjack/Extensions
-  - CocoaLumberjack/Core (1.8.1)
-  - CocoaLumberjack/Extensions (1.8.1):
+  - CocoaLumberjack/Core (1.9.2)
+  - CocoaLumberjack/Extensions (1.9.2):
     - CocoaLumberjack/Core
-  - LogglyLogger-CocoaLumberjack (0.2.0):
+  - LogglyLogger-CocoaLumberjack (0.3.0):
     - AFNetworking (~> 2.0)
     - CocoaLumberjack (~> 1.6)
 
 DEPENDENCIES:
-  - LogglyLogger-CocoaLumberjack (from `~/git/baresi/LogglyLogger-CocoaLumberjack`)
+  - LogglyLogger-CocoaLumberjack (from `../../../LogglyLogger-CocoaLumberjack`)
 
 EXTERNAL SOURCES:
   LogglyLogger-CocoaLumberjack:
-    :path: ~/git/baresi/LogglyLogger-CocoaLumberjack
+    :path: ../../../LogglyLogger-CocoaLumberjack
 
 SPEC CHECKSUMS:
-  AFNetworking: e8cfd8f3fe3bfe19124a0cc63f4d45752d892a56
-  CocoaLumberjack: 020378ec400d658923bf5887178394f65f052c90
-  LogglyLogger-CocoaLumberjack: b0c922dd6f7be0cc0ca6bcd4686045784f0c94a8
+  AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
+  CocoaLumberjack: 205769c032b5fef85b92472046bcc8b7e7c8a817
+  LogglyLogger-CocoaLumberjack: 4b0cfe78c112ae03e70a3d3ba7021ff179797916
 
-COCOAPODS: 0.29.0
+COCOAPODS: 0.34.4

@@ -79,9 +79,12 @@
 
     NSData *jsondata = [logMsg dataUsingEncoding:NSUTF8StringEncoding];
     NSError *inputJsonError;
-    NSDictionary *jsondictForLogMsg = [NSJSONSerialization JSONObjectWithData:jsondata options:NSJSONReadingAllowFragments error:&inputJsonError];
-    if (!inputJsonError && [jsondictForLogMsg count] > 0) {
-        [logfields addEntriesFromDictionary:jsondictForLogMsg];
+    id mostOftenADict = [NSJSONSerialization JSONObjectWithData:jsondata options:NSJSONReadingAllowFragments error:&inputJsonError];
+    if ([mostOftenADict isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *jsondictForLogMsg = (NSDictionary *)mostOftenADict;
+        if (!inputJsonError && [jsondictForLogMsg count] > 0) {
+            [logfields addEntriesFromDictionary:jsondictForLogMsg];
+        }
     }
 
     NSError *outputJsonError;
