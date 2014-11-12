@@ -4,7 +4,7 @@
 
 #import "LogglyFormatter.h"
 #import "LogglyFields.h"
-#define kLogglyFormatStringWhenLogMsgIsNotJson @"{\"loglevel\":\"%@\",\"timestamp\":\"%@\",\"file\":\"%@\",\"fileandlinenumber\":\"%@:%d\",\"jsonerror\":\"JSON Output Error when trying to create Loggly JSON\",\"rawlogmessage\":\"%@\"}"
+#define kLogglyFormatStringWhenLogMsgIsNotJson @"{\"loglevel\":\"%@\",\"timestamp\":\"%@\",\"file\":\"%@\",\"fileandlinenumber\":\"%@:%lu\",\"jsonerror\":\"JSON Output Error when trying to create Loggly JSON\",\"rawlogmessage\":\"%@\"}"
 
 #pragma mark NSMutableDictionary category.
 // Defined here so it doesn't spill over to the client projects.
@@ -56,7 +56,7 @@
     NSMutableDictionary *logfields = [NSMutableDictionary dictionaryWithDictionary:[logglyFieldsDelegate logglyFieldsToIncludeInEveryLogStatement]];
 
     NSString *logLevel;
-    switch (logMessage->logFlag)
+    switch (logMessage->_flag)
     {
         case LOG_FLAG_ERROR : logLevel = @"error"; break;
         case LOG_FLAG_WARN  : logLevel = @"warning"; break;
@@ -66,15 +66,15 @@
     }
     [logfields setObjectNilSafe:logLevel forKey:@"loglevel"];
 
-    NSString *iso8601DateString = [self iso8601StringFromDate:(logMessage->timestamp)];
+    NSString *iso8601DateString = [self iso8601StringFromDate:(logMessage->_timestamp)];
     [logfields setObjectNilSafe:iso8601DateString forKey:@"timestamp"];
 
-    NSString *filestring = [self lastPartOfFullFilePath:[NSString stringWithFormat:@"%s", logMessage->file]];
+    NSString *filestring = [self lastPartOfFullFilePath:[NSString stringWithFormat:@"%@", logMessage->_file]];
     [logfields setObjectNilSafe:filestring forKey:@"file"];
-    [logfields setObjectNilSafe:[NSString stringWithFormat:@"%@:%d", filestring, logMessage->lineNumber] forKey:@"fileandlinenumber"];
+    [logfields setObjectNilSafe:[NSString stringWithFormat:@"%@:%lu", filestring, (unsigned long)logMessage->_line] forKey:@"fileandlinenumber"];
 
     // newlines are not allowed in POSTS to Loggly
-    NSString *logMsg = [logMessage->logMsg stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
+    NSString *logMsg = [logMessage->_message stringByReplacingOccurrencesOfString:@"\n" withString:@" "];
     [logfields setObjectNilSafe:logMsg forKey:@"rawlogmessage"];
 
     NSData *jsondata = [logMsg dataUsingEncoding:NSUTF8StringEncoding];
@@ -90,13 +90,13 @@
     NSError *outputJsonError;
     NSData *outputJson = [NSJSONSerialization dataWithJSONObject:logfields options:0 error:&outputJsonError];
     if (outputJsonError) {
-        return [NSString stringWithFormat:kLogglyFormatStringWhenLogMsgIsNotJson, logLevel, iso8601DateString, filestring, filestring, logMessage->lineNumber, logMsg];
+        return [NSString stringWithFormat:kLogglyFormatStringWhenLogMsgIsNotJson, logLevel, iso8601DateString, filestring, filestring, (unsigned long)logMessage->_line, logMsg];
     }
     NSString *jsonString = [[NSString alloc] initWithData:outputJson encoding:NSUTF8StringEncoding];
     if (jsonString) {
         return jsonString;
     } else {
-        return [NSString stringWithFormat:kLogglyFormatStringWhenLogMsgIsNotJson, logLevel, iso8601DateString, filestring, filestring, logMessage->lineNumber, logMsg];
+        return [NSString stringWithFormat:kLogglyFormatStringWhenLogMsgIsNotJson, logLevel, iso8601DateString, filestring, filestring, (unsigned long)logMessage->_line, logMsg];
     }
 }
 
