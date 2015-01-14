@@ -27,6 +27,6 @@ Pod::Spec.new do |s|
 
   s.source_files  = 'LogglyLogger-CocoaLumberjack', 'LogglyLogger-CocoaLumberjack/**/*.{h,m}'
   s.requires_arc = true
-  s.dependency     'CocoaLumberjack', '~> 2.0'
+  s.dependency     'CocoaLumberjack', '~> 2.0.0rc'
   s.dependency     'AFNetworking', '~> 2.0'
 end
