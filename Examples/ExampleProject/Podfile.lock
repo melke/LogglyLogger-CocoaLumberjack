@@ -20,25 +20,34 @@ PODS:
   - AFNetworking/UIKit (2.5.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - CocoaLumberjack (1.9.2):
-    - CocoaLumberjack/Extensions (= 1.9.2)
-  - CocoaLumberjack/Core (1.9.2)
-  - CocoaLumberjack/Extensions (1.9.2):
+  - CocoaLumberjack (2.0.0-rc):
+    - CocoaLumberjack/Default (= 2.0.0-rc)
+    - CocoaLumberjack/Extensions (= 2.0.0-rc)
+  - CocoaLumberjack/Core (2.0.0-rc)
+  - CocoaLumberjack/Default (2.0.0-rc):
     - CocoaLumberjack/Core
-  - LogglyLogger-CocoaLumberjack (0.3.0):
+  - CocoaLumberjack/Extensions (2.0.0-rc):
+    - CocoaLumberjack/Default
+  - LogglyLogger-CocoaLumberjack (1.0.0-beta3):
     - AFNetworking (~> 2.0)
-    - CocoaLumberjack (~> 1.6)
+    - CocoaLumberjack (~> 2.0.0-rc)
 
 DEPENDENCIES:
-  - LogglyLogger-CocoaLumberjack (from `../../../LogglyLogger-CocoaLumberjack`)
+  - LogglyLogger-CocoaLumberjack (from `https://github.com/melke/LogglyLogger-CocoaLumberjack.git`, tag `1.0.0-beta3`)
 
 EXTERNAL SOURCES:
   LogglyLogger-CocoaLumberjack:
-    :path: ../../../LogglyLogger-CocoaLumberjack
+    :git: https://github.com/melke/LogglyLogger-CocoaLumberjack.git
+    :tag: 1.0.0-beta3
+
+CHECKOUT OPTIONS:
+  LogglyLogger-CocoaLumberjack:
+    :git: https://github.com/melke/LogglyLogger-CocoaLumberjack.git
+    :tag: 1.0.0-beta3
 
 SPEC CHECKSUMS:
   AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
-  CocoaLumberjack: 205769c032b5fef85b92472046bcc8b7e7c8a817
-  LogglyLogger-CocoaLumberjack: 4b0cfe78c112ae03e70a3d3ba7021ff179797916
+  CocoaLumberjack: 6186e27827fc574b50b16c10102fcc591437f06c
+  LogglyLogger-CocoaLumberjack: 58361f29d2866a19e3627861ae2e8aa6c51b75cb
 
 COCOAPODS: 0.36.0.beta.1
