@@ -23,7 +23,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     LogglyLogger *logglyLogger = [[LogglyLogger alloc] init];
     LogglyFormatter *logglyFormatter = [[LogglyFormatter alloc] init];
     [logglyLogger setLogFormatter:logglyFormatter];
-    logglyLogger.logglyKey = @"your-Customer-Token-for-your-Loggly-account";
+    logglyLogger.logglyKey = @"f6f0c5ec-c766-4fd6-8dfe-181940d90588";
     // Set saving every 15 seconds, to speed up the example project, but the default value of 10 minutes is better in apps
     // that normally don't access the network very often.
     logglyLogger.saveInterval = 15;
