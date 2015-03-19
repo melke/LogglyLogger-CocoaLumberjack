@@ -50,7 +50,7 @@
 {
     // Return YES if an item was added to the buffer.
     // Return NO if the logMessage was ignored.
-    if (!self->formatter) {
+    if (!self->_logFormatter) {
         // No formatter set, don't log
 #ifdef DEBUG
         NSLog(@"No formatter set in LogglyLogger. Will not log anything.");
@@ -70,7 +70,7 @@
         return YES;
     }
 
-    [_logMessagesArray addObject:[self->formatter formatLogMessage:logMessage]];
+    [_logMessagesArray addObject:[self->_logFormatter formatLogMessage:logMessage]];
     return YES;
 }
 
@@ -179,7 +179,7 @@
     NSLog(@"Suspending, posting logs to Loggly");
 #endif
     
-    dispatch_async(loggerQueue, ^{
+    dispatch_async(_loggerQueue, ^{
         [self db_save];
     });
 }
