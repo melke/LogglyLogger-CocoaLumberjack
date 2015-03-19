@@ -16,7 +16,7 @@ There are two ways to add LogglyLogger-CocoaLumberjack to your project:
 
 Using [Cocoapods](http://www.cocoapods.org) (preferred):
 
-    pod "LogglyLogger-CocoaLumberjack", "~> 0.3"
+    pod "LogglyLogger-CocoaLumberjack", "~> 2.0"
 
 Or manually:
 
