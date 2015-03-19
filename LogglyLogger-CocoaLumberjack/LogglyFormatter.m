@@ -58,10 +58,10 @@
     NSString *logLevel;
     switch (logMessage->_flag)
     {
-        case LOG_FLAG_ERROR : logLevel = @"error"; break;
-        case LOG_FLAG_WARN  : logLevel = @"warning"; break;
-        case LOG_FLAG_INFO  : logLevel = @"info"; break;
-        case LOG_FLAG_DEBUG : logLevel = @"debug"; break;
+        case DDLogFlagError : logLevel = @"error"; break;
+        case DDLogFlagWarning  : logLevel = @"warning"; break;
+        case DDLogFlagInfo  : logLevel = @"info"; break;
+        case DDLogFlagDebug : logLevel = @"debug"; break;
         default             : logLevel = @"verbose"; break;
     }
     [logfields setObjectNilSafe:logLevel forKey:@"loglevel"];

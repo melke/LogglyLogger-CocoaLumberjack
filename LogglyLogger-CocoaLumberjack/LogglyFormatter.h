@@ -3,7 +3,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DDLog.h"
+#import <CocoaLumberjack/CocoaLumberjack.h>
 
 @protocol LogglyFieldsDelegate
 - (NSDictionary *)logglyFieldsToIncludeInEveryLogStatement;

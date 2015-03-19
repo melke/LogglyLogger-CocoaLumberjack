@@ -11,7 +11,7 @@
 #import "DDTTYLogger.h"
 #import "LogglyFields.h"
 
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
 
 @implementation LLAppDelegate
 
