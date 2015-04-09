@@ -16,7 +16,12 @@
         _queue = dispatch_queue_create("se.baresi.logglylogger.logglyfields.queue", NULL);
         NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:0];
         [dict setObject:[[NSLocale preferredLanguages] objectAtIndex:0] forKey:@"lang"];
-        [dict setObject:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"] forKey:@"appname"];
+        id bundleDisplayName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
+        if (bundleDisplayName != nil) {
+            [dict setObject:bundleDisplayName forKey:@"appname"];
+        } else {
+            [dict setObject:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"] forKey:@"appname"];
+        }
         [dict setObject:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] forKey:@"appversion"];
         [dict setObject:[UIDevice currentDevice].name forKey:@"devicename"];
         [dict setObject:[UIDevice currentDevice].model forKey:@"devicemodel"];
