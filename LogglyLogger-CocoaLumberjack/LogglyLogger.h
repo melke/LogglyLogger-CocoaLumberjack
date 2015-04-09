@@ -4,7 +4,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CocoaLumberjack/CocoaLumberjack.h>
-#import "DDAbstractDatabaseLogger.h"
+#import <CocoaLumberjack/DDAbstractDatabaseLogger.h>
 
 
 @interface LogglyLogger : DDAbstractDatabaseLogger
