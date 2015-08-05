@@ -111,10 +111,14 @@
     struct tm *timeinfo;
     char buffer[80];
 
-    time_t rawtime = (time_t)[date timeIntervalSince1970];
+    NSTimeInterval timeInterval = [date timeIntervalSince1970];
+    time_t rawtime = (time_t)timeInterval;
     timeinfo = gmtime(&rawtime);
-
-    strftime(buffer, 80, "%Y-%m-%dT%H:%M:%SZ", timeinfo);
+    
+    // utc time format with milliseconds
+    NSMutableString *format = [NSMutableString stringWithString:@"%Y-%m-%dT%H:%M:%S"];
+    [format appendString:[[NSString stringWithFormat:@"%.3lfZ", timeInterval - rawtime] substringFromIndex:1]];
+    strftime(buffer, 80, [format cStringUsingEncoding:NSUTF8StringEncoding], timeinfo);
 
     return [NSString stringWithCString:buffer encoding:NSUTF8StringEncoding];
 }
