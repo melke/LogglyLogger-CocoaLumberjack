@@ -38,6 +38,7 @@
     {
         // Use standard LogglyFields Delegate
         logglyFieldsDelegate = [[LogglyFields alloc] init];
+        self.alwaysIncludeRawMessage = YES;
     }
     return self;
 }
@@ -46,6 +47,7 @@
     if((self = [super init]))
     {
         logglyFieldsDelegate = delegate;
+        self.alwaysIncludeRawMessage = YES;
     }
     return self;
 }
@@ -84,6 +86,9 @@
         NSDictionary *jsondictForLogMsg = (NSDictionary *)mostOftenADict;
         if (!inputJsonError && [jsondictForLogMsg count] > 0) {
             [logfields addEntriesFromDictionary:jsondictForLogMsg];
+            if (!self.alwaysIncludeRawMessage) {
+                [logfields removeObjectForKey:@"rawlogmessage"];
+            }
         }
     }
 

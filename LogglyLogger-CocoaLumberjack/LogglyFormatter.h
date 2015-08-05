@@ -5,10 +5,12 @@
 #import <Foundation/Foundation.h>
 #import <CocoaLumberjack/CocoaLumberjack.h>
 
+
 @protocol LogglyFieldsDelegate
 - (NSDictionary *)logglyFieldsToIncludeInEveryLogStatement;
 @end
 
 @interface LogglyFormatter : NSObject <DDLogFormatter>
+@property (nonatomic, assign) BOOL alwaysIncludeRawMessage;
 - (id)initWithLogglyFieldsDelegate:(id<LogglyFieldsDelegate>)delegate;
 @end
