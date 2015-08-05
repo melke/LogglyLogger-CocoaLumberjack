@@ -93,6 +93,9 @@ they all have reasonable default values.
   - **saveInterval** - Number of seconds between posting log statements to Loggly. Default = 600. Note that the logs are always posted when the app is suspended. Setting this to a low value may turn your app into a battery hog.
   - **saveThreshold** - Number of log messages before forcing a post, regardless of how long time it has been since the last post. Default 1000.
 
+By default, the logmessage will always be logged in the Loggly field "rawlogmessage", even though the log message was successfully parsed and logged as
+ individual JSON fields. To prevent logging of rawlogmessage in this situation, set the LogglyFormatter property **alwaysIncludeRawMessage** to NO
+
 ###Tracking sessions and users
 
 To track a specific user you can set the userid property on the LogglyFields object. The username
