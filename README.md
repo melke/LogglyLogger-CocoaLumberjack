@@ -36,7 +36,7 @@ In your App Delegate:
 
     #import "LogglyLogger.h"
     #import "LogglyFormatter.h"
-    static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+    static const int ddLogLevel = DDLogLevelVerbose;
 
 In didFinishLaunchingWithOptions
 
