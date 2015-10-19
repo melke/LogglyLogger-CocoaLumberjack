@@ -95,6 +95,14 @@ they all have reasonable default values.
 
 By default, the logmessage will always be logged in the Loggly field "rawlogmessage", even though the log message was successfully parsed and logged as
  individual JSON fields. To prevent logging of rawlogmessage in this situation, set the LogglyFormatter property **alwaysIncludeRawMessage** to NO
+ 
+ ```objc
+    LogglyFormatter *logglyFormatter = [[LogglyFormatter alloc] init];
+    logglyFormatter.alwaysIncludeRawMessage = NO;
+    
+    LogglyLogger *logglyLogger = [[LogglyLogger alloc] init];
+    [logglyLogger setLogFormatter:logglyFormatter];
+```
 
 ###Tracking sessions and users
 
