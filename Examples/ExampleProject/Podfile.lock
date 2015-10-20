@@ -20,13 +20,13 @@ PODS:
   - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - CocoaLumberjack (2.0.1):
-    - CocoaLumberjack/Default (= 2.0.1)
-    - CocoaLumberjack/Extensions (= 2.0.1)
-  - CocoaLumberjack/Core (2.0.1)
-  - CocoaLumberjack/Default (2.0.1):
+  - CocoaLumberjack (2.0.3):
+    - CocoaLumberjack/Default (= 2.0.3)
+    - CocoaLumberjack/Extensions (= 2.0.3)
+  - CocoaLumberjack/Core (2.0.3)
+  - CocoaLumberjack/Default (2.0.3):
     - CocoaLumberjack/Core
-  - CocoaLumberjack/Extensions (2.0.1):
+  - CocoaLumberjack/Extensions (2.0.3):
     - CocoaLumberjack/Default
   - LogglyLogger-CocoaLumberjack (2.0.3):
     - CocoaLumberjack (~> 2.0.0)
@@ -35,7 +35,7 @@ PODS:
   - LogglyLogger-CocoaLumberjack/Formatter (2.0.3):
     - CocoaLumberjack (~> 2.0.0)
   - LogglyLogger-CocoaLumberjack/Logger (2.0.3):
-    - AFNetworking (~> 2.0)
+    - AFNetworking (~> 2.5)
     - CocoaLumberjack (~> 2.0.0)
 
 DEPENDENCIES:
@@ -47,7 +47,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
-  CocoaLumberjack: 019d1361244274a6138c788c6cb80baabc13fb8f
-  LogglyLogger-CocoaLumberjack: 10375dd973b9b5cd309a46b7488f5182067d75ac
+  CocoaLumberjack: f58d8a19629f4d8379ae14bb3534def24161430e
+  LogglyLogger-CocoaLumberjack: 7b9d1c0d27e1dbce0cd0bfed976b8067e7a14594
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0
