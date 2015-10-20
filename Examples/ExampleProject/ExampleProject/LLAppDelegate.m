@@ -20,11 +20,14 @@ static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
 
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
 
+    LogglyFields *logglyFields = [[LogglyFields alloc] init];
+    LogglyFormatter *logglyFormatter = [[LogglyFormatter alloc] initWithLogglyFieldsDelegate:logglyFields];
+    logglyFields.userid = @"lukeskywalker";
     LogglyLogger *logglyLogger = [[LogglyLogger alloc] init];
-    LogglyFormatter *logglyFormatter = [[LogglyFormatter alloc] init];
     logglyFormatter.alwaysIncludeRawMessage = NO;
     [logglyLogger setLogFormatter:logglyFormatter];
-    logglyLogger.logglyKey = @"your-Customer-Token-for-your-Loggly-account";
+    
+    logglyLogger.logglyKey = @"enter-your-loggly-key-here";
     // Set saving every 15 seconds, to speed up the example project, but the default value of 10 minutes is better in apps
     // that normally don't access the network very often.
     logglyLogger.saveInterval = 15;
