@@ -3,13 +3,13 @@
 //
 
 #import "LogglyLogger.h"
-#import "AFHTTPRequestOperation.h"
 
 
 @implementation LogglyLogger {
     // Some private iVars
     NSMutableArray *_logMessagesArray;
     NSURL *_logglyURL;
+    NSURLSessionConfiguration *_sessionConfiguration;
     BOOL _hasLoggedFirstLogglyPost;
 }
 
@@ -123,37 +123,34 @@
         _logglyURL = [NSURL URLWithString:[NSString stringWithFormat:self.logglyUrlTemplate, self.logglyKey, self.logglyTags]];
     }
 
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:_logglyURL];
-    [request setHTTPMethod:@"POST"];
-    [request setHTTPBody:[messagesString dataUsingEncoding:NSUTF8StringEncoding]];
+    if (!_sessionConfiguration) {
+        _sessionConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        _sessionConfiguration.HTTPAdditionalHeaders = @{
+                @"Content-Type"  : @"application/json"
+        };
+        _sessionConfiguration.allowsCellularAccess = YES;
+    }
 
     if (!_hasLoggedFirstLogglyPost) {
         NSLog(@"Posting to Loggly: %@", messagesString);
     }
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    // Make sure the post request can finish in background
-#ifndef AF_APP_EXTENSIONS
-    [operation setShouldExecuteAsBackgroundTaskWithExpirationHandler:^{
-        // Handle what to do when the background time has been consumed and iOS will shut us down
-        // So, let's do... nothing at all
-    }];
-#endif
 
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSString *response = [[NSString alloc]initWithData:responseObject encoding:NSUTF8StringEncoding];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:_sessionConfiguration];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:_logglyURL];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:[messagesString dataUsingEncoding:NSUTF8StringEncoding]];
+    NSURLSessionDataTask *postDataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (!_hasLoggedFirstLogglyPost) {
-            NSLog(@"Loggly post response = %@. This was the last NSLog statement you will see from LogglyLogger. The rest of the posts to Loggly will be done silently",response);
             _hasLoggedFirstLogglyPost = YES;
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        if (!_hasLoggedFirstLogglyPost) {
-            NSLog(@"Loggly post Error: %@", error);
-            _hasLoggedFirstLogglyPost = YES;
+            if (error) {
+                NSLog(@"LOGGLY ERROR: Error object = %@. This was the last NSLog statement you will see from LogglyLogger. The rest of the posts to Loggly will be done silently",error);
+            } else if (data) {
+                NSString *responseString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+                NSLog(@"LOGGLY: Response = %@  This was the last NSLog statement you will see from LogglyLogger. The rest of the posts to Loggly will be done silently.",responseString);
+            }
         }
     }];
-
-    [operation start];
-
+    [postDataTask resume];
 }
 
 #pragma mark Property getters
