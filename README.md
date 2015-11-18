@@ -29,26 +29,16 @@ If you prefer editing the raw plist xml, you can add the following lines:
 
   - A Loggly account. (Note, they charge for higher volumes of logging)
   - CocoaLumberjack >= 2.0
-  - AFNetworking >= 2.0
+  
+(From 2.3.0 of LogglyLogger-CocoaLumberjack, AFNetworking is no longer a dependency)
 
 LogglyLogger-CocoaLumberjack uses ARC. If your project doesn't use ARC, you can enable it per file using the `-fobjc-arc` compiler flag under "Build Phases" and "Compile Sources" on your project's target in Xcode.
 
 ##Installation
 
-There are two ways to add LogglyLogger-CocoaLumberjack to your project:
-
-Using [Cocoapods](http://www.cocoapods.org) (preferred):
+Using [Cocoapods](http://www.cocoapods.org) :
 
     pod "LogglyLogger-CocoaLumberjack", "~> 2.0"
-
-Or manually:
-
-    git clone https://github.com/melke/LogglyLogger-CocoaLumberjack.git
-    cd LogglyLogger-CocoaLumberjack
-    # now add LogglyLogger-CocoaLumberjack to your project by dragging everything in the
-    # subfolder `LogglyLogger-CocoaLumberjack` directory into your project.
-
-(If you install manually, you must also include AFNetworking >2.0 and CocoaLumberjack >2.0 in your project)
 
 ##Usage
 
