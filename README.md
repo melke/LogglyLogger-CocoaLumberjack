@@ -36,7 +36,7 @@ LogglyLogger-CocoaLumberjack uses ARC. If your project doesn't use ARC, you can 
 
 ##Installation
 
-Using [Cocoapods](http://www.cocoapods.org) :
+Using [CocoaPods](http://www.cocoapods.org) :
 
     pod "LogglyLogger-CocoaLumberjack", "~> 2.0"
 
