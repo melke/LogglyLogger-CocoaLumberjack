@@ -45,6 +45,14 @@
 
 #pragma mark Property setters
 
+- (void)setAppversion:(NSString *)appversion {
+    dispatch_barrier_async(_queue, ^{
+        NSMutableDictionary *dict = [_fieldsDictionary mutableCopy];
+        [dict setObject:appversion forKey:@"appversion"];
+        _fieldsDictionary = [NSDictionary dictionaryWithDictionary:dict];
+    });
+}
+
 - (void)setSessionid:(NSString *)sessionid {
     dispatch_barrier_async(_queue, ^{
         NSMutableDictionary *dict = [_fieldsDictionary mutableCopy];

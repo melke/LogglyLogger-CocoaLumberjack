@@ -75,7 +75,7 @@ This is all there is to it. The log posts will include all the json fields that 
   - **file** - The name of the source file that logged the message
   - **fileandlinenumber** - Source file and line number in that file (nice for doing facet searches in Loggly)
   - **appname** - The Display name of your app
-  - **appversion** - The version of your app
+  - **appversion** - The version of your app. You can override by setting your own appversion in the LogglyFields object.
   - **devicemodel** - The device model
   - **devicename** - The device name
   - **lang** - The primary lang the app user has selected in Settings on the device
