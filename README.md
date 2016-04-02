@@ -2,29 +2,6 @@
 
 LogglyLogger-CocoaLumberjack is a custom logger for [CocoaLumberjack](https://github.com/CocoaLumberjack/CocoaLumberjack) that logs to [Loggly](https://www.loggly.com/).
 
-##IMPORTANT MESSAGE
-
-Currently, the Loggly servers are using an SSL certficate that iOS9 considers
-insecure. Until Loggly has replaced their cerificate, you will need to add an
-exception for the Loggly server in your plist file. It will look like this if you
-use the plist editor in Xcode: ![Plist editor](./securityexception.png?raw=true)
-
-If you prefer editing the raw plist xml, you can add the following lines:
-
-```xml
-<key>NSAppTransportSecurity</key>
-<dict>
-  <key>NSExceptionDomains</key>
-  <dict>
-    <key>logs-01.loggly.com</key>
-    <dict>
-      <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
-      <false/>
-    </dict>
-  </dict>
-</dict>
-```
-
 ##Requirements
 
   - A Loggly account. (Note, they charge for higher volumes of logging)
