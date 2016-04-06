@@ -16,4 +16,6 @@
 /// The Loggly API key
 @property (nonatomic, strong) NSString *logglyKey;
 
+@property(nonatomic, assign) BOOL outputFirstResponse;
+
 @end
