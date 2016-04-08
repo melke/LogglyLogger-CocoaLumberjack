@@ -16,7 +16,8 @@
 - (id)init {
     self = [super init];
     if (self) {
-
+        
+        self.outputFirstResponse = YES;
         self.deleteInterval = 0;
         self.maxAge = 0;
         self.deleteOnEverySave = NO;
@@ -144,7 +145,7 @@
             _hasLoggedFirstLogglyPost = YES;
             if (error) {
                 NSLog(@"LOGGLY ERROR: Error object = %@. This was the last NSLog statement you will see from LogglyLogger. The rest of the posts to Loggly will be done silently",error);
-            } else if (data) {
+            } else if (data && _outputFirstResponse) {
                 NSString *responseString = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
                 NSLog(@"LOGGLY: Response = %@  This was the last NSLog statement you will see from LogglyLogger. The rest of the posts to Loggly will be done silently.",responseString);
             }
