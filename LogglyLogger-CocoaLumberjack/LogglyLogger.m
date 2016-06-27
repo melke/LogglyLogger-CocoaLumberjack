@@ -132,7 +132,7 @@
         _sessionConfiguration.allowsCellularAccess = YES;
     }
 
-    if (!_hasLoggedFirstLogglyPost) {
+    if (!_hasLoggedFirstLogglyPost && _outputFirstResponse) {
         NSLog(@"Posting to Loggly: %@", messagesString);
     }
 
