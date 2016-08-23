@@ -48,7 +48,11 @@
 - (void)setAppversion:(NSString *)appversion {
     dispatch_barrier_async(_queue, ^{
         NSMutableDictionary *dict = [_fieldsDictionary mutableCopy];
-        [dict setObject:appversion forKey:@"appversion"];
+        if (appversion != nil) {
+            [dict setObject:appversion forKey:@"appversion"];
+        } else {
+            [dict removeObjectForKey:@"appversion"];
+        }
         _fieldsDictionary = [NSDictionary dictionaryWithDictionary:dict];
     });
 }
@@ -56,7 +60,11 @@
 - (void)setSessionid:(NSString *)sessionid {
     dispatch_barrier_async(_queue, ^{
         NSMutableDictionary *dict = [_fieldsDictionary mutableCopy];
-        [dict setObject:sessionid forKey:@"sessionid"];
+        if (sessionid != nil) {
+            [dict setObject:sessionid forKey:@"sessionid"];
+        } else {
+            [dict removeObjectForKey:@"sessionid"];
+        }
         _fieldsDictionary = [NSDictionary dictionaryWithDictionary:dict];
     });
 }
@@ -64,7 +72,11 @@
 - (void)setUserid:(NSString *)userid {
     dispatch_barrier_async(_queue, ^{
         NSMutableDictionary *dict = [_fieldsDictionary mutableCopy];
-        [dict setObject:userid forKey:@"userid"];
+        if (userid != nil) {
+             [dict setObject:userid forKey:@"userid"];
+        } else {
+            [dict removeObjectForKey:@"userid"];
+        }
         _fieldsDictionary = [NSDictionary dictionaryWithDictionary:dict];
     });
 }
