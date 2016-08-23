@@ -20,12 +20,12 @@
         if (bundleDisplayName != nil) {
             [dict setObject:bundleDisplayName forKey:@"appname"];
         } else {
-            NSString * bundleName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"];
+            NSString *bundleName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"];
             if(bundleName != nil) {
                 [dict setObject:bundleName forKey:@"appname"];
             }
         }
-        NSString * bundleVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+        NSString *bundleVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
         if(bundleVersion != nil) {
             [dict setObject:bundleVersion forKey:@"appversion"];
         }
