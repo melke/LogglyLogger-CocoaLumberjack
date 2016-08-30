@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		31DD6CE306B535C55B5DF383 /* libPods-ExampleProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A76C344EF451523FF7CF915 /* libPods-ExampleProject.a */; };
+		DFD26CA35CF6AB934F1F57F0 /* libPods-ExampleProject-ExampleProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A78F89CDC3BCC5318C5FEFEC /* libPods-ExampleProject-ExampleProject.a */; };
 		E5D5794E18C0C5BF00CB26C6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5D5794D18C0C5BF00CB26C6 /* Foundation.framework */; };
 		E5D5795018C0C5BF00CB26C6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5D5794F18C0C5BF00CB26C6 /* CoreGraphics.framework */; };
 		E5D5795218C0C5BF00CB26C6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5D5795118C0C5BF00CB26C6 /* UIKit.framework */; };
@@ -37,7 +38,10 @@
 /* Begin PBXFileReference section */
 		2A76C344EF451523FF7CF915 /* libPods-ExampleProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ExampleProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		62F8E15868BDAE2ADD4C33F5 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		715A600D9CA585253A85E669 /* Pods-ExampleProject-ExampleProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleProject-ExampleProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExampleProject-ExampleProject/Pods-ExampleProject-ExampleProject.release.xcconfig"; sourceTree = "<group>"; };
+		A78F89CDC3BCC5318C5FEFEC /* libPods-ExampleProject-ExampleProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ExampleProject-ExampleProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0229972D711F3216940FD18 /* Pods-ExampleProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExampleProject/Pods-ExampleProject.release.xcconfig"; sourceTree = "<group>"; };
+		E2C9D899860F8394A610CC79 /* Pods-ExampleProject-ExampleProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleProject-ExampleProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ExampleProject-ExampleProject/Pods-ExampleProject-ExampleProject.debug.xcconfig"; sourceTree = "<group>"; };
 		E5D5794A18C0C5BF00CB26C6 /* ExampleProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExampleProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5D5794D18C0C5BF00CB26C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E5D5794F18C0C5BF00CB26C6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -70,6 +74,7 @@
 				E5D5795218C0C5BF00CB26C6 /* UIKit.framework in Frameworks */,
 				E5D5794E18C0C5BF00CB26C6 /* Foundation.framework in Frameworks */,
 				31DD6CE306B535C55B5DF383 /* libPods-ExampleProject.a in Frameworks */,
+				DFD26CA35CF6AB934F1F57F0 /* libPods-ExampleProject-ExampleProject.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +96,8 @@
 			children = (
 				FA2FCC238AF00E32E3435D3F /* Pods-ExampleProject.debug.xcconfig */,
 				E0229972D711F3216940FD18 /* Pods-ExampleProject.release.xcconfig */,
+				E2C9D899860F8394A610CC79 /* Pods-ExampleProject-ExampleProject.debug.xcconfig */,
+				715A600D9CA585253A85E669 /* Pods-ExampleProject-ExampleProject.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -125,6 +132,7 @@
 				E5D5795118C0C5BF00CB26C6 /* UIKit.framework */,
 				E5D5796C18C0C5BF00CB26C6 /* XCTest.framework */,
 				2A76C344EF451523FF7CF915 /* libPods-ExampleProject.a */,
+				A78F89CDC3BCC5318C5FEFEC /* libPods-ExampleProject-ExampleProject.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -281,7 +289,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ExampleProject/Pods-ExampleProject-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ExampleProject-ExampleProject/Pods-ExampleProject-ExampleProject-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		758339AF641C30E4ADE11D38 /* [CP] Copy Pods Resources */ = {
@@ -296,7 +304,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ExampleProject/Pods-ExampleProject-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ExampleProject-ExampleProject/Pods-ExampleProject-ExampleProject-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		975AAD5D5EA24722235F6D2D /* [CP] Check Pods Manifest.lock */ = {
@@ -446,7 +454,7 @@
 		};
 		E5D5797D18C0C5BF00CB26C6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FA2FCC238AF00E32E3435D3F /* Pods-ExampleProject.debug.xcconfig */;
+			baseConfigurationReference = E2C9D899860F8394A610CC79 /* Pods-ExampleProject-ExampleProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -462,7 +470,7 @@
 		};
 		E5D5797E18C0C5BF00CB26C6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E0229972D711F3216940FD18 /* Pods-ExampleProject.release.xcconfig */;
+			baseConfigurationReference = 715A600D9CA585253A85E669 /* Pods-ExampleProject-ExampleProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

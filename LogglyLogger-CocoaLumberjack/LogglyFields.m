@@ -4,7 +4,15 @@
 
 #import "LogglyFields.h"
 
-@import UIKit;
+#define TARGET_MAC_DESKTOP !(TARGET_IPHONE || TARGET_OS_SIMULATOR)
+
+#if TARGET_MAC_DESKTOP
+#import <Foundation/Foundation.h>
+#else
+#import <UIKit/UIKit.h>
+#endif
+
+@import Foundation;
 
 @implementation LogglyFields {
     dispatch_queue_t _queue;
@@ -29,9 +37,11 @@
         if(bundleVersion != nil) {
             [dict setObject:bundleVersion forKey:@"appversion"];
         }
-        [dict setObject:[UIDevice currentDevice].name forKey:@"devicename"];
-        [dict setObject:[UIDevice currentDevice].model forKey:@"devicemodel"];
-        [dict setObject:[UIDevice currentDevice].systemVersion forKey:@"osversion"];
+        
+        // TODO: use x-platform UIDevice abstraction
+//        [dict setObject:[UIDevice currentDevice].name forKey:@"devicename"];
+//        [dict setObject:[UIDevice currentDevice].model forKey:@"devicemodel"];
+//        [dict setObject:[UIDevice currentDevice].systemVersion forKey:@"osversion"];
         [dict setObject:[self generateRandomStringWithSize:10] forKey:@"sessionid"];
         _fieldsDictionary = [NSDictionary dictionaryWithDictionary:dict];
     }

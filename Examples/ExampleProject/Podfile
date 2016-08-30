@@ -1,6 +1,20 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-target 'ExampleProject' do
-  platform :ios, '7.0'
+abstract_target 'ExampleProject' do
+  workspace 'ExampleProject.xcworkspace'
+
   pod 'LogglyLogger-CocoaLumberjack', :path => '../../'
+
+  target 'ExampleProject' do
+    platform :ios, '7.0'
+    inherit! :complete
+    project 'ExampleProject.xcodeproj'
+  end
+  target 'ExampleMacProject' do
+    platform :osx, '10.10'
+    inherit! :complete
+    use_frameworks!
+    project 'ExampleMacProject.xcodeproj'
+  end
 end
+
