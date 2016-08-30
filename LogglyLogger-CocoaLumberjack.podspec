@@ -21,7 +21,10 @@ Pod::Spec.new do |s|
 
   s.author       = { "Mats Melke" => "mats@melke.nu" }
 
-  s.ios.deployment_target = '7.0'
+  s.platforms    = {
+    :ios => "7.0",
+    :osx => "10.10"
+  }
 
   s.source       = { :git => "https://github.com/melke/LogglyLogger-CocoaLumberjack.git", :tag => "2.3.2" }
 
