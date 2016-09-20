@@ -4,7 +4,7 @@
 
 #import "LogglyFields.h"
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 
 @implementation LogglyFields {
     dispatch_queue_t _queue;
