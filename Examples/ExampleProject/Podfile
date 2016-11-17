@@ -1,4 +1,3 @@
-platform :ios, '7.0'
-source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
 
-pod 'LogglyLogger-CocoaLumberjack', :path => '../../'
+pod 'LogglyLogger-CocoaLumberjack', :git => 'https://github.com/melke/LogglyLogger-CocoaLumberjack.git'
