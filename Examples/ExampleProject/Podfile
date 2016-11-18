@@ -1,3 +1,4 @@
 platform :ios, '8.0'
-
-pod 'LogglyLogger-CocoaLumberjack', :git => 'https://github.com/melke/LogglyLogger-CocoaLumberjack.git'
+target 'ExampleProject' do
+  pod 'LogglyLogger-CocoaLumberjack', :git => 'https://github.com/melke/LogglyLogger-CocoaLumberjack.git'
+end
