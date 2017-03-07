@@ -17,7 +17,7 @@ PODS:
     - CocoaLumberjack (~> 2.0)
 
 DEPENDENCIES:
-  - LogglyLogger-CocoaLumberjack (from `../../`)
+  - LogglyLogger-CocoaLumberjack (from `https://github.com/melke/LogglyLogger-CocoaLumberjack.git`)
 
 EXTERNAL SOURCES:
   LogglyLogger-CocoaLumberjack:

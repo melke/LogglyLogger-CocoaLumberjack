@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "LogglyLogger-CocoaLumberjack"
-  s.version      = "2.3.2"
+  s.version      = "3.0.0"
   s.summary      = "LogglyLogger-CocoaLumberjack is a custom logger for CocoaLumberjack that logs to Loggly"
 
   s.description  = <<-DESC
@@ -26,10 +26,10 @@ Pod::Spec.new do |s|
     :osx => "10.10"
   }
 
-  s.source       = { :git => "https://github.com/melke/LogglyLogger-CocoaLumberjack.git", :tag => "2.3.2" }
+  s.source       = { :git => "https://github.com/melke/LogglyLogger-CocoaLumberjack.git", :tag => "3.0.0" }
 
   s.requires_arc = true
-  s.dependency     'CocoaLumberjack', '~> 2.0'
+  s.dependency     'CocoaLumberjack', '~> 3.0'
 
   s.subspec 'Formatter' do |ss|
     ss.source_files = 'LogglyLogger-CocoaLumberjack/{LogglyFields,LogglyFormatter}.{h,m}'
