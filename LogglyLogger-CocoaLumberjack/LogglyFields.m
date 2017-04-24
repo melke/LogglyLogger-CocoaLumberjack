@@ -4,7 +4,30 @@
 
 #import "LogglyFields.h"
 
-@import UIKit;
+#define TARGET_MAC_DESKTOP !(TARGET_IPHONE || TARGET_OS_SIMULATOR)
+
+#if TARGET_MAC_DESKTOP
+
+#import <Foundation/Foundation.h>
+#include <sys/sysctl.h>
+
+static NSString* sysctlDeviceModel() {
+    size_t size;
+    sysctlbyname("hw.model", NULL, &size, NULL, 0);
+    char *model = malloc(size);
+    sysctlbyname("hw.model", model, &size, NULL, 0);
+    NSString *sDeviceModel = @(model);
+    free(model);
+    return sDeviceModel;
+}
+
+#else
+
+#import <UIKit/UIKit.h>
+
+#endif
+
+@import Foundation;
 
 @implementation LogglyFields {
     dispatch_queue_t _queue;
@@ -29,9 +52,17 @@
         if(bundleVersion != nil) {
             [dict setObject:bundleVersion forKey:@"appversion"];
         }
+        
+#if TARGET_MAC_DESKTOP
+        dict[@"devicename"] = [[NSHost currentHost] name];
+        dict[@"devicemodel"] = sysctlDeviceModel();
+        NSOperatingSystemVersion osVersion = [[NSProcessInfo processInfo] operatingSystemVersion];
+        dict[@"osversion"] = [NSString stringWithFormat:@"%d.%d.%d", osVersion.majorVersion, osVersion.minorVersion, osVersion.patchVersion];
+#else
         [dict setObject:[UIDevice currentDevice].name forKey:@"devicename"];
         [dict setObject:[UIDevice currentDevice].model forKey:@"devicemodel"];
         [dict setObject:[UIDevice currentDevice].systemVersion forKey:@"osversion"];
+#endif
         [dict setObject:[self generateRandomStringWithSize:10] forKey:@"sessionid"];
         _fieldsDictionary = [NSDictionary dictionaryWithDictionary:dict];
     }

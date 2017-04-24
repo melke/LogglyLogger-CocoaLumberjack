@@ -1,11 +1,9 @@
 PODS:
-  - CocoaLumberjack (3.0.0):
-    - CocoaLumberjack/Default (= 3.0.0)
-    - CocoaLumberjack/Extensions (= 3.0.0)
-  - CocoaLumberjack/Core (3.0.0)
-  - CocoaLumberjack/Default (3.0.0):
-    - CocoaLumberjack/Core
-  - CocoaLumberjack/Extensions (3.0.0):
+  - CocoaLumberjack (3.1.0):
+    - CocoaLumberjack/Default (= 3.1.0)
+    - CocoaLumberjack/Extensions (= 3.1.0)
+  - CocoaLumberjack/Default (3.1.0)
+  - CocoaLumberjack/Extensions (3.1.0):
     - CocoaLumberjack/Default
   - LogglyLogger-CocoaLumberjack (3.0.0):
     - CocoaLumberjack (~> 3.0)
@@ -17,21 +15,16 @@ PODS:
     - CocoaLumberjack (~> 3.0)
 
 DEPENDENCIES:
-  - LogglyLogger-CocoaLumberjack (from `https://github.com/melke/LogglyLogger-CocoaLumberjack.git`)
+  - LogglyLogger-CocoaLumberjack (from `../../`)
 
 EXTERNAL SOURCES:
   LogglyLogger-CocoaLumberjack:
-    :git: https://github.com/melke/LogglyLogger-CocoaLumberjack.git
-
-CHECKOUT OPTIONS:
-  LogglyLogger-CocoaLumberjack:
-    :commit: c36388d88c99c054918794c4e8f0dc238841aaca
-    :git: https://github.com/melke/LogglyLogger-CocoaLumberjack.git
+    :path: ../../
 
 SPEC CHECKSUMS:
-  CocoaLumberjack: c823149bccc5519a9447aeb433be7b1212a7d6a5
-  LogglyLogger-CocoaLumberjack: 16afad0a63fb70179fda1db85e03aeb3ded7fb02
+  CocoaLumberjack: 8311463ddf9ee86a06ef92a071dd656c89244500
+  LogglyLogger-CocoaLumberjack: 99ae9ec4d506b07655844b98781e566679e59018
 
-PODFILE CHECKSUM: 953b26c0c27bf3b4b7266f58e885a1ba236c82a2
+PODFILE CHECKSUM: 69c9d62f07f89107d5b43e1c7c73dfd7f69293cb
 
-COCOAPODS: 1.1.1
+COCOAPODS: 1.2.0
