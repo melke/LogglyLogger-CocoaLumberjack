@@ -6,6 +6,8 @@
 #import <CocoaLumberjack/CocoaLumberjack.h>
 #import <CocoaLumberjack/DDAbstractDatabaseLogger.h>
 
+#import "LogglyFormatter.h"
+#import "LogglyFields.h"
 
 @interface LogglyLogger : DDAbstractDatabaseLogger
 
