@@ -2,7 +2,7 @@
 
 LogglyLogger-CocoaLumberjack is a custom logger for [CocoaLumberjack](https://github.com/CocoaLumberjack/CocoaLumberjack) that logs to [Loggly](https://www.loggly.com/).
 
-##Requirements
+## Requirements
 
   - A Loggly account. (Note, they charge for higher volumes of logging)
   - CocoaLumberjack >= 2.0
@@ -11,13 +11,13 @@ LogglyLogger-CocoaLumberjack is a custom logger for [CocoaLumberjack](https://gi
 
 LogglyLogger-CocoaLumberjack uses ARC. If your project doesn't use ARC, you can enable it per file using the `-fobjc-arc` compiler flag under "Build Phases" and "Compile Sources" on your project's target in Xcode.
 
-##Installation
+## Installation
 
 Using [CocoaPods](http://www.cocoapods.org) :
 
     pod "LogglyLogger-CocoaLumberjack", "~> 2.0"
 
-##Usage
+## Usage
 
 First, make sure that you have created an API key in your Loggly account (they call this Customer Token, and can be created
 in the Loggly Web UI under the tab "Source setup").
@@ -65,9 +65,9 @@ Note that you don't have to log statements in json format, but it is much easier
 Word of warning, don't use too many json keys. It will mess up the Loggly UI. Figure out smart json keys that you can reuse
 in many of your log statements.
 
-##Advanced Usage
+## Advanced Usage
 
-###Loggly tags
+### Loggly tags
 
 LogglyLogger will use the bundle id of your app as a Loggly tag. You can create a "source group" in Loggly
 that contains all log statements that has a specific tag. This way, you can easily use the same Loggly
@@ -75,7 +75,7 @@ account for many apps. If you don't want to use the bundle id as the tag or if y
 use multiple tags, you can set the property logglyTags in the LogglyLogger.
 (comma-separated list of tags, no whitespace in or between tags)
 
-###LogglyLogger settings
+### LogglyLogger settings
 
 There are some settings you can set on the LogglyLogger. Most of them are inherited from the abstract class and
 they all have reasonable default values.
@@ -94,7 +94,7 @@ By default, the logmessage will always be logged in the Loggly field "rawlogmess
     [logglyLogger setLogFormatter:logglyFormatter];
 ```
 
-###Tracking sessions and users
+### Tracking sessions and users
 
 To track a specific user you can set the userid property on the LogglyFields object. The username
 will then be included in every log statement until the app is terminated by iOS.
@@ -106,7 +106,7 @@ you can set the CocoaLumberjack log level to a finer level for this user. Now yo
 the detailed logs in Loggly for this particular user, by filtering out all but this particular session.
 Pretty nice, huh?
 
-###Roll your own LogglyFieldsDelegate
+### Roll your own LogglyFieldsDelegate
 
 If you're not happy with the standard fields that are logged with every request, you can implement your own LogglyFieldsDelegate
 You only need to implement one method:
@@ -122,11 +122,11 @@ Use your custom delegate by using this init method when creating the LogglyForma
 LogglyFormatter *logglyFormatter = [[LogglyFormatter alloc] initWithLogglyFieldsDelegate:yourCustomDelegate];
 ```
 
-##Feedback and Contribution
+## Feedback and Contribution
 
 All feedback and contribution is very appreciated. Please send pull requests, create issues
 or just send an email to [mats.melke@gmail.com](mailto:mats.melke@gmail.com).
 
-##Copyrights
+## Copyrights
 
 * Copyright (c) 2014- Mats Melke. Please see LICENSE.txt for details.

@@ -1,30 +1,37 @@
 PODS:
-  - CocoaLumberjack (2.2.0):
-    - CocoaLumberjack/Default (= 2.2.0)
-    - CocoaLumberjack/Extensions (= 2.2.0)
-  - CocoaLumberjack/Core (2.2.0)
-  - CocoaLumberjack/Default (2.2.0):
+  - CocoaLumberjack (3.0.0):
+    - CocoaLumberjack/Default (= 3.0.0)
+    - CocoaLumberjack/Extensions (= 3.0.0)
+  - CocoaLumberjack/Core (3.0.0)
+  - CocoaLumberjack/Default (3.0.0):
     - CocoaLumberjack/Core
-  - CocoaLumberjack/Extensions (2.2.0):
+  - CocoaLumberjack/Extensions (3.0.0):
     - CocoaLumberjack/Default
-  - LogglyLogger-CocoaLumberjack (2.3.0):
-    - CocoaLumberjack (~> 2.0)
-    - LogglyLogger-CocoaLumberjack/Formatter (= 2.3.0)
-    - LogglyLogger-CocoaLumberjack/Logger (= 2.3.0)
-  - LogglyLogger-CocoaLumberjack/Formatter (2.3.0):
-    - CocoaLumberjack (~> 2.0)
-  - LogglyLogger-CocoaLumberjack/Logger (2.3.0):
-    - CocoaLumberjack (~> 2.0)
+  - LogglyLogger-CocoaLumberjack (3.0.0):
+    - CocoaLumberjack (~> 3.0)
+    - LogglyLogger-CocoaLumberjack/Formatter (= 3.0.0)
+    - LogglyLogger-CocoaLumberjack/Logger (= 3.0.0)
+  - LogglyLogger-CocoaLumberjack/Formatter (3.0.0):
+    - CocoaLumberjack (~> 3.0)
+  - LogglyLogger-CocoaLumberjack/Logger (3.0.0):
+    - CocoaLumberjack (~> 3.0)
 
 DEPENDENCIES:
-  - LogglyLogger-CocoaLumberjack (from `../../`)
+  - LogglyLogger-CocoaLumberjack (from `https://github.com/melke/LogglyLogger-CocoaLumberjack.git`)
 
 EXTERNAL SOURCES:
   LogglyLogger-CocoaLumberjack:
-    :path: "../../"
+    :git: https://github.com/melke/LogglyLogger-CocoaLumberjack.git
+
+CHECKOUT OPTIONS:
+  LogglyLogger-CocoaLumberjack:
+    :commit: c36388d88c99c054918794c4e8f0dc238841aaca
+    :git: https://github.com/melke/LogglyLogger-CocoaLumberjack.git
 
 SPEC CHECKSUMS:
-  CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
-  LogglyLogger-CocoaLumberjack: 1caf7e0dd0dbf9f571014310cd9476aa7c7fecf2
+  CocoaLumberjack: c823149bccc5519a9447aeb433be7b1212a7d6a5
+  LogglyLogger-CocoaLumberjack: 16afad0a63fb70179fda1db85e03aeb3ded7fb02
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 953b26c0c27bf3b4b7266f58e885a1ba236c82a2
+
+COCOAPODS: 1.1.1
