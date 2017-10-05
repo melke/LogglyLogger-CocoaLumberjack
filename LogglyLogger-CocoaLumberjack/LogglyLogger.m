@@ -71,7 +71,10 @@
         return YES;
     }
 
-    [_logMessagesArray addObject:[self->_logFormatter formatLogMessage:logMessage]];
+    NSString *log = [self->_logFormatter formatLogMessage:logMessage];
+    if(log) {
+        [_logMessagesArray addObject:log];
+    }
     return YES;
 }
 
