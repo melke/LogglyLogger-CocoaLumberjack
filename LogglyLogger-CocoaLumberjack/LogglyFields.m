@@ -44,7 +44,7 @@
     // The dict may be altered by one of the setters, so lets use a queue for thread safety
     __block NSDictionary *dict;
     dispatch_sync(_queue, ^{
-        dict = [_fieldsDictionary copy];
+        dict = [self->_fieldsDictionary copy];
     });
     return dict;
 }
@@ -53,37 +53,37 @@
 
 - (void)setAppversion:(NSString *)appversion {
     dispatch_barrier_async(_queue, ^{
-        NSMutableDictionary *dict = [_fieldsDictionary mutableCopy];
+        NSMutableDictionary *dict = [self->_fieldsDictionary mutableCopy];
         if (appversion != nil) {
             [dict setObject:appversion forKey:@"appversion"];
         } else {
             [dict removeObjectForKey:@"appversion"];
         }
-        _fieldsDictionary = [NSDictionary dictionaryWithDictionary:dict];
+        self->_fieldsDictionary = [NSDictionary dictionaryWithDictionary:dict];
     });
 }
 
 - (void)setSessionid:(NSString *)sessionid {
     dispatch_barrier_async(_queue, ^{
-        NSMutableDictionary *dict = [_fieldsDictionary mutableCopy];
+		NSMutableDictionary *dict = [self->_fieldsDictionary mutableCopy];
         if (sessionid != nil) {
             [dict setObject:sessionid forKey:@"sessionid"];
         } else {
             [dict removeObjectForKey:@"sessionid"];
         }
-        _fieldsDictionary = [NSDictionary dictionaryWithDictionary:dict];
+		self->_fieldsDictionary = [NSDictionary dictionaryWithDictionary:dict];
     });
 }
 
 - (void)setUserid:(NSString *)userid {
     dispatch_barrier_async(_queue, ^{
-        NSMutableDictionary *dict = [_fieldsDictionary mutableCopy];
+		NSMutableDictionary *dict = [self->_fieldsDictionary mutableCopy];
         if (userid != nil) {
              [dict setObject:userid forKey:@"userid"];
         } else {
             [dict removeObjectForKey:@"userid"];
         }
-        _fieldsDictionary = [NSDictionary dictionaryWithDictionary:dict];
+		self->_fieldsDictionary = [NSDictionary dictionaryWithDictionary:dict];
     });
 }
 
